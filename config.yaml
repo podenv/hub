@@ -218,3 +218,26 @@ firefox:
   - mesa-dri-drivers
   - libva-intel-driver
   - libva-intel-hybrid-driver
+
+next:
+  description: "Next browser - Be productive"
+  url: "https://next.atlas.engineer/"
+  # TODO: figure out why Fedora's webkitgtk doesn't load next javascript
+  parent: guix
+  packages:
+  - dbus
+  - sbcl-next
+  - next-gtk-webkit
+  capabilities:
+    network: true
+    x11: true
+    mount-run: true
+  syscaps:
+  - SYS_RESOURCE
+  pre-tasks:
+    - name: Start dbus session
+      shell: "export DBUS_SESSION_BUS_ADDRESS=$(dbus-daemon --session --fork --print-address)"
+    - name: Start webkit render
+      shell: "next-gtk-webkit & sleep 0.5"
+  command:
+    - next
