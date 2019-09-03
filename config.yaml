@@ -1,0 +1,220 @@
+---
+# Basic desktop applications
+pavucontrol:
+  description: "Adjust audio volumes"
+  parent: fedora
+  capabilities:
+    x11: true
+    selinux: false
+    uidmap: true
+    pulseaudio: true
+  desktop:
+    icon: "multimedia-volume-control"
+  packages:
+  - pavucontrol
+  command:
+  - pavucontrol
+
+xeyes:
+  description: "Test graphical setup"
+  parent: fedora
+  capabilities:
+    selinux: false
+    uidmap: true
+    x11: true
+  packages:
+  - xorg-x11-apps
+  command:
+  - xeyes
+
+# File viewer/editor
+mupdf:
+  description: "Display a pdf file"
+  parent: fedora
+  capabilities:
+    selinux: false
+    uidmap: true
+    x11: true
+  packages:
+  - mupdf
+  command:
+  - mupdf
+  - $1
+
+feh:
+  description: "Display an image file"
+  parent: fedora
+  capabilities:
+    selinux: false
+    uidmap: true
+    x11: true
+  packages:
+  - feh
+  command:
+  - feh
+  - $1
+
+inkscape:
+  description: "Edit a svg file"
+  parent: fedora
+  capabilities:
+    selinux: false
+    uidmap: true
+    x11: true
+  packages:
+  - inkscape
+  command:
+  - inkscape
+  - $1
+
+# Network service
+python-http-server:
+  description: "Expose current directory over HTTP"
+  parent: fedora
+  capabilities:
+    mount-cwd: true
+    network: true
+  environ:
+    PORT: '8000'
+    PYTHONUNBUFFERED: '1'
+  ports:
+  - '{PORT}:8000'
+  packages:
+  - python3
+  command:
+  - python3
+  - -m
+  - http.server
+
+# Communication
+mumble:
+  description: "VoIP solution"
+  parent: fedora
+  capabilities:
+    ipc: true
+    network: true
+    pulseaudio: true
+    selinux: false
+    uidmap: true
+    x11: true
+  packages:
+  - mumble
+  command:
+  - mumble
+
+# Devel
+git:
+  description: "Git command line"
+  parent: fedora
+  capabilities:
+    editor: true
+    git: true
+    mount-cwd: true
+    selinux: false
+    terminal: true
+    uidmap: true
+  packages:
+  - git
+  command:
+  - git
+
+git-pull-request:
+  description: "Submit github/pagure PR"
+  parent: git
+  capabilities:
+    network: true
+    ssh: true
+  mounts:
+    ~/.netrc: ~/.netrc
+  packages:
+  - git-pull-request
+  command:
+  - git-pull-request
+  - --no-comment-on-update
+
+git-review:
+  description: "Submit gerrit CR"
+  parent: git
+  capabilities:
+    network: true
+    ssh: true
+  command:
+  - git-review
+  packages:
+  - git-review
+
+# IDE
+emacs-nox:
+  description: "Extensible text editor (terminal mode)"
+  parent: fedora
+  capabilities:
+    terminal: true
+  packages:
+  - emacs
+  command:
+  - emacs
+
+emacs:
+  description: "Extensible text editor"
+  parent: emacs-nox
+  capabilities:
+    x11: true
+    selinux: false
+    uidmap: true
+
+codium:
+  parent: fedora
+  capabilities:
+    selinux: false
+    uidmap: true
+    x11: true
+    foreground: true
+  image-tasks:
+  - name: Install vscodium repository
+    copy:
+      content: |
+        [gitlab.com_paulcarroty_vscodium_repo]
+        name=gitlab.com_paulcarroty_vscodium_repo
+        baseurl=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/
+        enabled=1
+        gpgcheck=1
+        repo_gpgcheck=1
+        gpgkey=https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+      dest: /etc/yum.repos.d/vscodium.repo
+  packages:
+  - which
+  - codium
+  command:
+  - codium
+
+# Web browser
+firefox-light:
+  description: "Mozilla Firefox Web Browser (without dri)"
+  parent: fedora
+  capabilities:
+    network: true
+    pulseaudio: true
+    selinux: false
+    uidmap: true
+    x11: true
+  shmsize: 4g
+  packages:
+  - firefox
+  command:
+  - firefox
+
+firefox:
+  description: "Mozilla Firefox Web Browser"
+  parent: firefox-light
+  capabilities:
+    dri: true
+  image-tasks:
+  - name: "Install rpmfusion"
+    shell: |
+      dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(grep ^VERSION_ID= /etc/os-release | cut -d= -f2).noarch.rpm
+  packages:
+  - ffmpeg
+  - libvdpau-va-gl
+  - mesa-dri-drivers
+  - libva-intel-driver
+  - libva-intel-hybrid-driver
