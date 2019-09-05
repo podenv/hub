@@ -164,6 +164,38 @@ emacs:
     selinux: false
     uidmap: true
 
+emacs-borg:
+  description: "The Borg assimilate Emacs packages as Git submodules."
+  url: "https://emacsmirror.net/manual/borg/"
+  parent: emacs
+  capabilities:
+    network: True
+    git: True
+    ssh: True
+  packages:
+    - make
+    - git
+    # libgit build req
+    - cmake
+    - gcc
+    - gcc-c++
+    - openssl-devel
+    - libssh2-devel
+    - glibc-common
+  environ:
+    BORG_URL: https://github.com/emacscollective/emacs.g
+  pre-tasks:
+    - name: Clone and bootstrap borg
+      shell: |
+        [ -d ~/.emacs.d/.git ] || git clone {BORG_URL} ~/.emacs.d;
+        if [ ! -f ~/.emacs.d/init.elc ]; then
+          pushd ~/.emacs.d;
+          sed -e 's#git@github.com:#https://github.com/#' -i .gitmodules -i Makefile;
+          make bootstrap-borg;
+          make bootstrap;
+          popd;
+        fi
+
 codium:
   parent: fedora
   capabilities:
