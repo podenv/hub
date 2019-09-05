@@ -151,6 +151,8 @@ emacs-nox:
     terminal: true
   packages:
   - emacs
+  - findutils
+  - grep
   command:
   - emacs
 
