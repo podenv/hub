@@ -243,3 +243,16 @@ next:
       shell: "next-gtk-webkit & sleep 0.5"
   command:
     - next
+
+streamtuner:
+  description: "An internet radio browser"
+  url: "http://milki.include-once.org/streamtuner2"
+  parent: fedora
+  packages:
+    - streamtuner
+  capabilities:
+    x11: True
+    network: True
+    pulseaudio: True
+  command:
+    - streamtuner2
