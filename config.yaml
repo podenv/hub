@@ -166,6 +166,7 @@ emacs:
 
 codium:
   parent: fedora
+  shmsize: 4g
   capabilities:
     selinux: false
     uidmap: true
