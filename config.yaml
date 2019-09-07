@@ -27,6 +27,46 @@ xeyes:
   command:
   - xeyes
 
+# Virtual network
+sshvpn:
+  description: "Create a point-to-point ssh tunel"
+  parent: fedora
+  abstract: true
+  capabilities:
+    ssh: true
+    network: true
+    uidmap: true
+    tun: true
+    terminal: true
+  vars:
+    LOCAL_IP: 172.30.1.1
+    REMOTE_IP: 172.30.1.2
+    REMOTE_HOST: localhost
+    REMOTE_USER: centos
+    REMOTE_TUN: 1
+  add-hosts:
+    "{HOSTNAME}": "{REMOTE_IP}"
+  syscaps: ["NET_ADMIN", "SYS_RESOURCE"]
+  pre-tasks:
+    - name: Creating local tun
+      shell: |
+        ip tuntap add dev tun1 mode tun user user;
+        ip addr add {LOCAL_IP}/30 dev tun1;
+        ip link set tun1 mtu 9000 up
+      unless: ip link show tun1
+    - name: Creating remote tun
+      command: >-
+        ssh -t {REMOTE_HOST} "
+          if ! sudo grep -q 'PermitTunnel\syes' /etc/ssh/sshd_config; then
+              echo 'PermitTunnel yes' | sudo tee -a /etc/ssh/sshd_config;
+              sudo systemctl restart sshd;
+          fi;
+          sudo ip tuntap add dev tun{REMOTE_TUN} mode tun user {REMOTE_USER};
+          sudo ip addr add {REMOTE_IP}/30 dev tun{REMOTE_TUN};
+          sudo ip link set tun{REMOTE_TUN} mtu 9000 up"
+      unless: ssh {REMOTE_USER}@{REMOTE_HOST} /sbin/ip link show tun{REMOTE_TUN}
+  command: ssh -w 1:{REMOTE_TUN} {REMOTE_USER}@{REMOTE_HOST}
+
 # File viewer/editor
 mupdf:
   description: "Display a pdf file"
