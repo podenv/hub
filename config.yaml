@@ -56,7 +56,7 @@ sshvpn:
       unless: ip link show tun1
     - name: Creating remote tun
       command: >-
-        ssh -t {REMOTE_HOST} "
+        ssh -t {REMOTE_USER}@{REMOTE_HOST} "
           if ! sudo grep -q 'PermitTunnel\syes' /etc/ssh/sshd_config; then
               echo 'PermitTunnel yes' | sudo tee -a /etc/ssh/sshd_config;
               sudo systemctl restart sshd;
