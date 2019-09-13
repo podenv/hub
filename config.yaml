@@ -236,6 +236,21 @@ emacs-borg:
           popd;
         fi
 
+emacs-spacemacs:
+  description: "Emacs advanced Kit focused on Evil"
+  url: "http://spacemacs.org"
+  parent: emacs
+  capabilities:
+    network: True
+    git: True
+    ssh: True
+  environ:
+    SPACEMACS_URL: https://github.com/syl20bnr/spacemacs
+  pre-tasks:
+    - name: Clone and bootstrap spacemacs
+      shell: |
+        [ -d ~/.emacs.d/.git ] || git clone {SPACEMACS_URL} ~/.emacs.d
+
 codium:
   parent: fedora
   shmsize: 4g
