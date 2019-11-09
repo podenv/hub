@@ -288,6 +288,7 @@ firefox:
     shell: |
       dnf install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(grep ^VERSION_ID= /etc/os-release | cut -d= -f2).noarch.rpm
   packages:
+  - gdouros-symbola-fonts
   - ffmpeg
   - libvdpau-va-gl
   - mesa-dri-drivers
