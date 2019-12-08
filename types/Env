@@ -1,0 +1,2 @@
+{- Convenient accessor to Podenv.Types.Env -}
+let Podenv = ../Podenv.dhall in Podenv.Types.Env
