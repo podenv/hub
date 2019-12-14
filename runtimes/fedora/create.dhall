@@ -21,6 +21,7 @@ let Base
                             "~/.cache/podenv/dnf-${version}"
                         ]
                     )
+              , user = ../defaultUser.dhall env.user
               , container-update =
                   ../defaultFile.dhall env.container-update [ ./update.dhall ]
               , container-file =
