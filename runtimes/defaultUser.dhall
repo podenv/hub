@@ -2,6 +2,6 @@
 ->  Optional/fold
       ../types/User
       user
-      (Optional ../types/User)
-      (\(user : ../types/User) -> Some user)
-      (Some { name = "user", home = "/home/user", uid = 1000 })
+      ../types/User
+      (\(user : ../types/User) -> user)
+      { name = "user", home = "/home/user", uid = 1000 }

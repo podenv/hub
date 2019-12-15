@@ -21,14 +21,14 @@ let Base
                             "~/.cache/podenv/centos-${Natural/show version}"
                         ]
                     )
-              , user = ../defaultUser.dhall env.user
+              , user = Some (../defaultUser.dhall env.user)
               , container-update =
                   ../defaultFile.dhall env.container-update [ ./update.dhall ]
               , container-file =
                   ../defaultFile.dhall
                     env.container-file
                     (   [ ./image.dhall version
-                        , ../createUser.dhall 1000 "user"
+                        , ../createUser.dhall (../defaultUser.dhall env.user)
                         ]
                       # pre-tasks
                       # [ ./install.dhall (../getPackages.dhall env.packages) ]

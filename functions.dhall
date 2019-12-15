@@ -1,6 +1,7 @@
 {- A list of useful function
 -}
 { addTasks = ./runtimes/addTasks.dhall
+, createUser = ./runtimes/createUser.dhall
 , concatPackages = ./functions/concatPackages.dhall
 , download = ./runtimes/download.dhall
 , containerFromText = ./runtimes/fromText.dhall

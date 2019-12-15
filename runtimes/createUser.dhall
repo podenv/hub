@@ -1,8 +1,7 @@
 {- Creates user task
 -}
-    \(uid : Natural)
-->  \(name : Text)
-->  let uid = Natural/show uid
+    \(user : ../types/User)
+->  let uid = Natural/show user.uid
 
     in  (../schemas/Task)::{
         , name = Some "Create user"
@@ -10,7 +9,7 @@
             Some
               ( (../Prelude.dhall).Text.concatSep
                   " && "
-                  [ "useradd -u ${uid} ${name}"
+                  [ "useradd -u ${uid} -d ${user.home} -m ${user.name}"
                   , "mkdir -p /run/user/${uid}"
                   , "chown ${uid}:${uid} /run/user/${uid}"
                   , "mkdir -p /run/user/0"
