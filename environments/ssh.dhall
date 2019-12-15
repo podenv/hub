@@ -70,7 +70,13 @@ let Vpn =
                     ]
               }
 
-in  { Vpn = Vpn
+let VpnTemplates = { Slot1 = Vpn "172.30.1.1" "172.30.1.2" 1 }
+
+in  { Vpn =
+        { Create = Vpn
+        , Slot1 = VpnTemplates.Slot1
+        , CentOS = VpnTemplates.Slot1 "centos"
+        , Fedora = VpnTemplates.Slot1 "fedora"
+        }
     , Client = Client
-    , VpnDemo = Vpn "172.30.1.1" "172.30.1.2" 1 "centos"
     }
