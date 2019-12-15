@@ -13,14 +13,7 @@ let Base
       ->  \(pre-tasks : List Task)
       ->  \(env : Env)
       ->      env
-          //  { build-env =
-                  Some
-                    ( ../mkBuildEnv.dhall
-                        [ ../../functions/mkMount.dhall
-                            "/var/cache/dnf"
-                            "~/.cache/podenv/dnf-${version}"
-                        ]
-                    )
+          //  { build-env = ./build-env.dhall version
               , user = ../defaultUser.dhall env.user
               , container-update =
                   ../defaultFile.dhall env.container-update [ ./update.dhall ]
