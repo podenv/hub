@@ -7,7 +7,9 @@ let Caps =
       , large-shm = Some True
       }
 
-let Minimal = mkSimple "firefox" "Mozilla Firefox" // { capabilities = Caps }
+let Minimal =
+          mkSimple "firefox" "Mozilla Firefox"
+      //  { capabilities = Caps, command = Some [ "firefox", "--no-remote" ] }
 
 let Extended =
       ../functions/addPackages.dhall
