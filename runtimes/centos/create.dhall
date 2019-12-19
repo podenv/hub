@@ -17,7 +17,7 @@ let Base
                   Some
                     ( ../mkBuildEnv.dhall
                         [ ../../functions/mkMount.dhall
-                            "/var/cache/dnf"
+                            "/var/cache/yum"
                             "~/.cache/podenv/centos-${Natural/show version}"
                         ]
                     )
