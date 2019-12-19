@@ -1,3 +1,3 @@
     \(containerPath : Text)
 ->  \(hostPath : Text)
-->  { HostPath = hostPath, ContainerPath = containerPath }
+->  { host-path = hostPath, container-path = containerPath }

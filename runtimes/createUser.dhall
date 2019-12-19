@@ -10,8 +10,9 @@
               ( (../Prelude.dhall).Text.concatSep
                   " && "
                   [ "useradd -u ${uid} -d ${user.home} -m ${user.name}"
+                  , "mkdir -p ${user.home}/.cache ${user.home}/.config"
                   , "mkdir -p /run/user/${uid}"
-                  , "chown ${uid}:${uid} /run/user/${uid}"
+                  , "chown -R ${uid}:${uid} /run/user/${uid} ${user.home}"
                   , "mkdir -p /run/user/0"
                   , "chown 0:0 /run/user/0"
                   ]
