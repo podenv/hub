@@ -16,6 +16,7 @@ in    [ Envs.Emacs.DhallEditor ]
         , Envs.Feh
         , Envs.Inkscape
         , Envs.Mumble
+        , Envs.OpenVPN
         , Envs.PythonHTTPServer.Default
         , Envs.Ssh.Client
         , Envs.Git.Git
