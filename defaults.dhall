@@ -17,6 +17,7 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
         , Envs.Inkscape
         , Envs.Libreoffice
         , Envs.Mumble
+        , (./runtimes/fedora/create.dhall).Fusion Envs.Obs
         , Envs.OpenVPN
         , Envs.PythonHTTPServer.Default
         , Envs.Ssh.Client

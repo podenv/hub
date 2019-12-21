@@ -15,6 +15,7 @@
 , Libreoffice = ./environments/libreoffice.dhall
 , Mplayer = ./environments/mplayer.dhall
 , Mumble = ./environments/mumble.dhall
+, Obs = ./environments/obs.dhall
 , OpenVPN = ./environments/openvpn.dhall
 , PythonHTTPServer = ./environments/python-http-server.dhall
 , Git = ./environments/git.dhall
