@@ -15,6 +15,7 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
         , Envs.Mupdf
         , Envs.Feh
         , Envs.Inkscape
+        , Envs.Libreoffice
         , Envs.Mumble
         , Envs.OpenVPN
         , Envs.PythonHTTPServer.Default

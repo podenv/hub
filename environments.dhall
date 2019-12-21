@@ -11,6 +11,7 @@
 , Mupdf = ./environments/mupdf.dhall
 , Feh = ./environments/feh.dhall
 , Inkscape = ./environments/inkscape.dhall
+, Libreoffice = ./environments/libreoffice.dhall
 , Mplayer = ./environments/mplayer.dhall
 , Mumble = ./environments/mumble.dhall
 , OpenVPN = ./environments/openvpn.dhall
