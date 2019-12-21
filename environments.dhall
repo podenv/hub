@@ -21,4 +21,5 @@
 , StreamTuner = ./environments/streamtuner.dhall
 , Ssh = ./environments/ssh.dhall
 , Firefox = ./environments/firefox.dhall
+, YoutubeDL = ./environments/youtube-dl.dhall
 }

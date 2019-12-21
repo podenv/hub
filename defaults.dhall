@@ -29,4 +29,5 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
         , (./runtimes/fedora/create.dhall).Fusion Envs.Firefox.WithCodecs
         , (./runtimes/fedora/create.dhall).Fusion Envs.Mplayer
         , Envs.StreamTuner
+        , Envs.YoutubeDL
         ]
