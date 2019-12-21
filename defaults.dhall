@@ -20,6 +20,7 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
         , (./runtimes/fedora/create.dhall).Fusion Envs.Obs
         , Envs.OpenVPN
         , Envs.PythonHTTPServer.Default
+        , Envs.Tor.Browser
         , Envs.Ssh.Client
         , Envs.Git.Git
         , Envs.Git.PullRequest

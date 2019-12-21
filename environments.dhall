@@ -18,6 +18,7 @@
 , Obs = ./environments/obs.dhall
 , OpenVPN = ./environments/openvpn.dhall
 , PythonHTTPServer = ./environments/python-http-server.dhall
+, Tor = ./environments/tor.dhall
 , Git = ./environments/git.dhall
 , Emacs = ./environments/emacs.dhall
 , Codium = ./environments/codium.dhall
