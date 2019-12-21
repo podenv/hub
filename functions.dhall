@@ -1,6 +1,9 @@
 {- A list of useful function
 -}
-{ addTasks = ./runtimes/addTasks.dhall
+{ addArg = ./functions/addArg.dhall
+, addArgs = ./functions/addArgs.dhall
+, addCap = ./functions/addCap.dhall
+, addTasks = ./runtimes/addTasks.dhall
 , createUser = ./runtimes/createUser.dhall
 , concatPackages = ./functions/concatPackages.dhall
 , download = ./runtimes/download.dhall

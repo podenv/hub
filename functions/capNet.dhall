@@ -1,1 +1,1 @@
-./addCap (\(env) -> env.capabilities // { network = Some True })
+./addCap (\(env : ../types/Env) -> env.capabilities // { network = Some True })
