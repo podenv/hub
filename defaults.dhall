@@ -7,7 +7,7 @@ let FedoraEnvs =
       ./functions/mapEnv.dhall
         (\(env : ./types/Env) -> (./runtimes/fedora/create.dhall).Latest env)
 
-in    [ Envs.Emacs.DhallEditor ]
+in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
     # FedoraEnvs
         [ Envs.Shell
         , Envs.Pavucontrol
