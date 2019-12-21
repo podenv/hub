@@ -27,5 +27,6 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
         , Envs.Codium
         , Envs.Firefox.Minimal
         , (./runtimes/fedora/create.dhall).Fusion Envs.Firefox.WithCodecs
+        , (./runtimes/fedora/create.dhall).Fusion Envs.Mplayer
         , Envs.StreamTuner
         ]
