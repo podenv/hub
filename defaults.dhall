@@ -26,6 +26,7 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
         , Envs.Emacs.Nox
         , Envs.Emacs.IDE
         , Envs.Codium
+        , Envs.Chromium
         , Envs.Firefox.Minimal
         , (./runtimes/fedora/create.dhall).Fusion Envs.Firefox.WithCodecs
         , (./runtimes/fedora/create.dhall).Fusion Envs.Mplayer

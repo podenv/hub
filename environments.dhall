@@ -5,7 +5,8 @@
    Some environments, such as the PythonHTTPServer.Server, are functions that
    require parameters to be used.
 -}
-{ Shell = ./environments/shell.dhall
+{ Chromium = ./environments/chromium.dhall
+, Shell = ./environments/shell.dhall
 , Pavucontrol = ./environments/pavucontrol.dhall
 , Xeyes = ./environments/xeyes.dhall
 , Mupdf = ./environments/mupdf.dhall
