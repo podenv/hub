@@ -7,7 +7,17 @@ let FedoraEnvs =
       ./functions/mapEnv.dhall
         (\(env : ./types/Env) -> (./runtimes/fedora/create.dhall).Latest env)
 
+let NodeEnvs =
+      ./functions/mapEnv.dhall
+        (\(env : ./types/Env) -> (./runtimes/node/create.dhall).Latest env)
+
 in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
+    # NodeEnvs
+        [ Envs.Node.Node
+        , Envs.Node.Npm
+        , Envs.Node.Yarn
+        , Envs.Node.ReactScripts
+        ]
     # FedoraEnvs
         [ Envs.Shell
         , Envs.Pavucontrol
