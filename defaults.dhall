@@ -24,6 +24,7 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
         , Envs.Xeyes
         , Envs.Mupdf
         , Envs.Feh
+        , Envs.Hugo
         , Envs.Inkscape
         , Envs.Libreoffice
         , Envs.Mumble
