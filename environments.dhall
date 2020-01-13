@@ -14,6 +14,7 @@
 , Hugo = ./environments/hugo.dhall
 , Inkscape = ./environments/inkscape.dhall
 , Libreoffice = ./environments/libreoffice.dhall
+, Linphone = ./environments/linphone.dhall
 , Mplayer = ./environments/mplayer.dhall
 , Mumble = ./environments/mumble.dhall
 , Node = ./environments/node.dhall

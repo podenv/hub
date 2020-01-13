@@ -27,6 +27,7 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
         , Envs.Hugo
         , Envs.Inkscape
         , Envs.Libreoffice
+        , Envs.Linphone
         , Envs.Mumble
         , (./runtimes/fedora/create.dhall).Fusion Envs.Obs
         , Envs.OpenVPN
