@@ -48,8 +48,6 @@ let download =
       ->  \(obj : RemoteObject)
       ->      "RUN python3 -c '"
           ++  (../Prelude.dhall).Text.concatSep ";" (downloadCode cacheDir obj)
-          ++  ''
-              '
-              ''
+          ++  "'"
 
 in  download
