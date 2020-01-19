@@ -18,6 +18,9 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
         , Envs.Node.Yarn
         , Envs.Node.ReactScripts
         ]
+    # [     (./runtimes/nixos/create.dhall).Default Envs.Shell
+        //  { name = "nix-shell" }
+      ]
     # FedoraEnvs
         [ Envs.Shell
         , Envs.Pavucontrol
