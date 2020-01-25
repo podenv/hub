@@ -34,4 +34,21 @@ in  { Latest = Base latest ([] : List Task)
     , Rawhide = Base "rawhide"
     , Base = Base
     , Fusion = Base latest [ ./fusion.dhall latest ]
+    , Devel =
+        Base
+          "rawhide"
+          [ ./install.dhall
+              [ "git"
+              , "make"
+              , "rpmdevtools"
+              , "createrepo_c"
+              , "pkgconfig"
+              , "python3-devel"
+              , "systemd-devel"
+              , "libtool"
+              , "gcc-c++"
+              , "emacs"
+              , "dnf-utils"
+              ]
+          ]
     }
