@@ -10,6 +10,7 @@
 , fromText = ./runtimes/fromText.dhall
 , containerFromText = ./runtimes/fromText.dhall
 , getPackages = ./runtimes/getPackages.dhall
+, getContainerFile = ./runtimes/getContainerFile.dhall
 , setNetwork = ./functions/setNetwork.dhall
 , mapEnv = ./functions/mapEnv.dhall
 , mkMount = ./functions/mkMount.dhall
