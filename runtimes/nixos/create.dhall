@@ -3,15 +3,14 @@ let Nix =
       ->  \(hash : Text)
       ->  \(env : ../../types/Env)
       ->      env
-          //  { build-env =
-                  Some
-                    { mounts =
-                          ./mounts.dhall
-                        # [ ../../functions/mkMount.dhall
-                              "/var/cache/dnf"
-                              "~/.cache/podenv/dnf-latest"
-                          ]
-                    }
+          //  { build-env = Some
+                  { mounts =
+                        ./mounts.dhall
+                      # [ ../../functions/mkMount.dhall
+                            "/var/cache/dnf"
+                            "~/.cache/podenv/dnf-latest"
+                        ]
+                  }
               , mounts = Some ./mounts.dhall
               , user = Some (../defaultUser.dhall env.user)
               , container-file =
@@ -20,14 +19,14 @@ let Nix =
                     # Adapted from https://github.com/NixOS/docker/blob/master/Dockerfile
                     FROM registry.fedoraproject.org/fedora:latest
 
-                    RUN dnf update -y && dnf install -y xz
+                    RUN dnf update -y && dnf install -y xz                                                           \
+                      && useradd -u 1000 -d /home/user -m user && mkdir -p /run/user/1000                            \
+                      && chown 1000:1000 /run/user/1000 && mkdir -p /run/user/0 && chown 0:0 /run/user/0
 
-                    RUN cd /                                                                                         \
+                    RUN test -d /nix/var || ( cd /                                                                   \
                       && curl -OL https://nixos.org/releases/nix/nix-${version}/nix-${version}-x86_64-linux.tar.xz   \
                       && echo "${hash}  nix-${version}-x86_64-linux.tar.xz" | sha256sum -c                           \
                       && tar xf nix-${version}-x86_64-linux.tar.xz                                                   \
-                      && useradd -u 1000 -d /home/user -m user && mkdir -p /run/user/1000                            \
-                      && chown 1000:1000 /run/user/1000 && mkdir -p /run/user/0 && chown 0:0 /run/user/0             \
                       && mkdir -m 0755 -p /etc/nix                                                                   \
                       && echo 'sandbox = false' > /etc/nix/nix.conf                                                  \
                       && mkdir -m 0755 -p /nix && chown -R user:user /nix /etc/nix                                   \
@@ -37,7 +36,12 @@ let Nix =
                       && rm -r /nix-*-x86_64-linux*                                                                  \
                       && su user -l -c "/nix/var/nix/profiles/default/bin/nix-collect-garbage --delete-old"          \
                       && su user -l -c "/nix/var/nix/profiles/default/bin/nix-store --optimise"                      \
-                      && su user -l -c "/nix/var/nix/profiles/default/bin/nix-store --verify --check-contents"
+                      && su user -l -c "/nix/var/nix/profiles/default/bin/nix-store --verify --check-contents" )
+
+                    RUN ln -sf /nix/var/nix/profiles/default/etc/profile.d/nix.sh /etc/profile.d/                    \
+                      && mkdir -m 0755 -p /etc/nix                                                                   \
+                      && echo 'sandbox = false' > /etc/nix/nix.conf                                                  \
+                      && mkdir -m 0755 -p /nix && chown -R user:user /etc/nix && chown user:user /nix
 
                     ENV \
                         ENV=/etc/profile \
