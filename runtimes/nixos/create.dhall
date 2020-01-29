@@ -41,14 +41,14 @@ let Nix =
                     RUN ln -sf /nix/var/nix/profiles/default/etc/profile.d/nix.sh /etc/profile.d/                    \
                       && mkdir -m 0755 -p /etc/nix                                                                   \
                       && echo 'sandbox = false' > /etc/nix/nix.conf                                                  \
-                      && mkdir -m 0755 -p /nix && chown -R user:user /etc/nix && chown user:user /nix
+                      && mkdir -m 0755 -p /nix && chown -R user:user /etc/nix
 
                     ENV \
                         ENV=/etc/profile \
                         USER=user \
                         PATH=/nix/var/nix/profiles/default/bin:/nix/var/nix/profiles/default/sbin:/bin:/sbin:/usr/bin:/usr/sbin \
-                        GIT_SSL_CAINFO=/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt \
-                        NIX_SSL_CERT_FILE=/nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt \
+                        GIT_SSL_CAINFO=/etc/pki/tls/certs/ca-bundle.crt \
+                        NIX_SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt \
                         NIX_PATH=/nix/var/nix/profiles/per-user/user/channels
                     ''
               }
