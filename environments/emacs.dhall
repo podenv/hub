@@ -22,14 +22,13 @@ let IDE =
             , "glibc-common"
             ]
             Emacs
-      //  { capabilities =
-              (../schemas/Caps)::{
-              , x11 = Some True
-              , terminal = Some True
-              , network = Some True
-              , git = Some True
-              , ssh = Some True
-              }
+      //  { capabilities = (../schemas/Caps)::{
+            , x11 = Some True
+            , terminal = Some True
+            , network = Some True
+            , git = Some True
+            , ssh = Some True
+            }
           }
 
 let {- A simple standalone environment to edit dhall file
@@ -37,22 +36,7 @@ let {- A simple standalone environment to edit dhall file
       let build-cache = "~/.cache/podenv/buildStore"
 
       let dhall =
-            { url =
-                "https://github.com/dhall-lang/dhall-haskell/releases/download/1.28.0/dhall-1.28.0-x86_64-linux.tar.bz2"
-            , hash =
-                "58cf2a27384a83298e3b1de7a6841143cbc1b8e6021aee953528807dd7b1b4e8"
-            , dest = "/usr/local/bin"
-            , archive = Some "--strip-components=2 -j --mode='a+x'"
-            }
-
-      let dhall-json =
-            { url =
-                "https://github.com/dhall-lang/dhall-haskell/releases/download/1.28.0/dhall-json-1.6.0-x86_64-linux.tar.bz2"
-            , hash =
-                "b9917603fa58295f211dde384c073f8482343d445ad9bfab8919ae2eaca6bda7"
-            , dest = "/usr/local/bin"
-            , archive = Some "--strip-components=2 -j --mode='a+x'"
-            }
+            "https://copr-be.cloud.fedoraproject.org/results/tdecacqu/dhall/fedora-rawhide-x86_64/01192146-dhall/dhall-1.29.0-1.fc32.x86_64.rpm"
 
       let dhall-mode =
             { name = "dhall-mode"
@@ -71,49 +55,40 @@ let {- A simple standalone environment to edit dhall file
       in  (../schemas/Env)::{
           , name = "dhall-editor"
           , description = Some "Emacs dhall editor"
-          , command =
-              Some [ "emacs", "--no-splash", "--load", "~/.emacs.d/init.el" ]
-          , capabilities =
-              (../schemas/Caps)::{
-              , x11 = Some True
-              , terminal = Some True
-              , network = Some True
-              , hostfiles = Some True
-              }
+          , command = Some
+              [ "emacs", "--no-splash", "--load", "~/.emacs.d/init.el" ]
+          , capabilities = (../schemas/Caps)::{
+            , x11 = Some True
+            , terminal = Some True
+            , network = Some True
+            , hostfiles = Some True
+            }
           , mounts = Some [ ../functions/mkMountMap.dhall "~/.cache/dhall" ]
           , user = Some { name = "user", uid = 1000, home = "/home/user" }
-          , build-env =
-              Some
-                ( ../runtimes/mkBuildEnv.dhall
-                    [ ../functions/mkMountMap.dhall build-cache
-                    , ../functions/mkMount.dhall
-                        "/var/cache/dnf"
-                        "~/.cache/podenv/dnf"
-                    ]
-                )
+          , build-env = Some
+              ( ../runtimes/mkBuildEnv.dhall
+                  [ ../functions/mkMountMap.dhall build-cache
+                  , ../functions/mkMount.dhall
+                      "/var/cache/dnf"
+                      "~/.cache/podenv/dnf"
+                  ]
+              )
           , container-file =
               ../runtimes/fromTextList.dhall
                 [ "FROM registry.fedoraproject.org/fedora:latest"
-                , "RUN dnf install -y emacs git bzip2"
+                , "RUN dnf install -y emacs git bzip2 ${dhall}"
                 ,     "RUN useradd -u 1000 -m user && "
                   ++  "mkdir /home/user/.cache /home/user/.config && chown -R user /home/user"
-                , ../runtimes/download.dhall build-cache dhall
-                , ../runtimes/download.dhall build-cache dhall-json
                 , ../runtimes/downloadGit.dhall build-cache dhall-mode
                 , ../runtimes/downloadGit.dhall build-cache reformatter
                 ]
-          , volumes =
-              Some
-                [ { name = "dhall-editor-config"
-                  , container-path = "~/.emacs.d/"
-                  , files =
-                      Some
-                        [ { name = "init.el"
-                          , content = ./emacs-dhall.el as Text
-                          }
-                        ]
-                  }
-                ]
+          , volumes = Some
+              [ { name = "dhall-editor-config"
+                , container-path = "~/.emacs.d/"
+                , files = Some
+                    [ { name = "init.el", content = ./emacs-dhall.el as Text } ]
+                }
+              ]
           }
 
 let ConfigEditor =
@@ -128,21 +103,20 @@ let ConfigEditor =
                 "~/git/github.com/podenv"
                 (../functions/addMountMap.dhall "~/.config/podenv" DhallEditor)
             )
-      //  { command =
-              Some
-                [ "emacs"
-                , "--no-splash"
-                , "--load"
-                , "~/.emacs.d/init.el"
-                , "~/.config/podenv/config.dhall"
-                ]
+      //  { command = Some
+              [ "emacs"
+              , "--no-splash"
+              , "--load"
+              , "~/.emacs.d/init.el"
+              , "~/.config/podenv/config.dhall"
+              ]
           }
 
 in  { Nox =
             Emacs
         //  { name = "emacs-nox"
-            , description =
-                Some "Extensible text editor (minimal terminal mode)"
+            , description = Some
+                "Extensible text editor (minimal terminal mode)"
             , command = Some [ "emacs", "-nw" ]
             }
     , Graphic = Graphic
