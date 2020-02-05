@@ -11,6 +11,10 @@ let NodeEnvs =
       ./functions/mapEnv.dhall
         (\(env : ./types/Env) -> (./runtimes/node/create.dhall).Latest env)
 
+let PythonEnvs =
+      ./functions/mapEnv.dhall
+        (\(env : ./types/Env) -> (./runtimes/python/create.dhall).Latest env)
+
 in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
     # NodeEnvs
         [ Envs.Node.Node
@@ -18,6 +22,7 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
         , Envs.Node.Yarn
         , Envs.Node.ReactScripts
         ]
+    # PythonEnvs [ Envs.Reno ]
     # [     (./runtimes/nixos/create.dhall).Default Envs.Shell
         //  { name = "nix-shell" }
       ,     (./runtimes/fedora/create.dhall).Devel Envs.Shell
