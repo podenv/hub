@@ -15,6 +15,7 @@
 , Inkscape = ./environments/inkscape.dhall
 , Libreoffice = ./environments/libreoffice.dhall
 , Linphone = ./environments/linphone.dhall
+, Maim = ./environments/maim.dhall
 , Mplayer = ./environments/mplayer.dhall
 , Mumble = ./environments/mumble.dhall
 , Node = ./environments/node.dhall
