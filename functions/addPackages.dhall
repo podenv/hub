@@ -7,8 +7,8 @@ let addPackages
     =     \(packages : List Text)
       ->  \(env : ../types/Env)
       ->      env
-          //  { packages =
-                  Some (../runtimes/getPackages.dhall env.packages # packages)
+          //  { packages = Some
+                  (../runtimes/getPackages.dhall env.packages # packages)
               }
 
 in  addPackages

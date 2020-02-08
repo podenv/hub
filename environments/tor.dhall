@@ -12,13 +12,12 @@ let Browser =
         (     ../functions/mkSimpleEnv.dhall "tor-browser" "Tor browser"
           //  { command = Some [ "torbrowser-launcher" ]
               , packages = Some [ "torbrowser-launcher", "dbus-glib", "libXt" ]
-              , mounts =
-                  Some
-                    [ ../functions/mkMountMap.dhall "~/.cache/torbrowser"
-                    , ../functions/mkMountMap.dhall "~/.config/torbrowser"
-                    , ../functions/mkMountMap.dhall
-                        "~/.local/share/torbrowser/gnupg_homedir"
-                    ]
+              , mounts = Some
+                  [ ../functions/mkMountMap.dhall "~/.cache/torbrowser"
+                  , ../functions/mkMountMap.dhall "~/.config/torbrowser"
+                  , ../functions/mkMountMap.dhall
+                      "~/.local/share/torbrowser/gnupg_homedir"
+                  ]
               }
         )
 

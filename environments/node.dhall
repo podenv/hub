@@ -32,13 +32,11 @@ let ReactScripts =
       //  { name = "react-scripts"
           , description = Some "JavaScript development runtime"
           , syscaps = Some [ "NET_ADMIN" ]
-          , pre-tasks =
-              Some
-                [ (../schemas/Task)::{
-                  , command =
-                      Some "ip a a 127.0.0.1/32 dev lo; ip link set lo up"
-                  }
-                ]
+          , pre-tasks = Some
+              [ (../schemas/Task)::{
+                , command = Some "ip a a 127.0.0.1/32 dev lo; ip link set lo up"
+                }
+              ]
           }
 
 in  { Node = Node, Npm = Npm, Yarn = Yarn, ReactScripts = ReactScripts }

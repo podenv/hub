@@ -13,14 +13,13 @@ let Base
       ->  \(pre-tasks : List Task)
       ->  \(env : Env)
       ->      env
-          //  { build-env =
-                  Some
-                    ( ../mkBuildEnv.dhall
-                        [ ../../functions/mkMount.dhall
-                            "/var/cache/yum"
-                            "~/.cache/podenv/centos-${Natural/show version}"
-                        ]
-                    )
+          //  { build-env = Some
+                  ( ../mkBuildEnv.dhall
+                      [ ../../functions/mkMount.dhall
+                          "/var/cache/yum"
+                          "~/.cache/podenv/centos-${Natural/show version}"
+                      ]
+                  )
               , user = Some (../defaultUser.dhall env.user)
               , container-update =
                   ../defaultFile.dhall env.container-update [ ./update.dhall ]

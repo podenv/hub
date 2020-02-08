@@ -1,12 +1,11 @@
 let Git =
           ../functions/mkSimpleEnv.dhall "git" "Git command line"
-      //  { capabilities =
-              (../schemas/Caps)::{
-              , editor = Some True
-              , git = Some True
-              , mount-cwd = Some True
-              , terminal = Some True
-              }
+      //  { capabilities = (../schemas/Caps)::{
+            , editor = Some True
+            , git = Some True
+            , mount-cwd = Some True
+            , terminal = Some True
+            }
           }
 
 let Pull =
