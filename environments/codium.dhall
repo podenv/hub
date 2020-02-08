@@ -26,5 +26,5 @@
     , foreground = Some True
     , large-shm = Some True
     }
-  , packages = Some [ "codium", "libX11-xcb", "which" ]
+  , packages = Some [ "codium", "libX11-xcb", "which", "gdouros-symbola-fonts" ]
   }
