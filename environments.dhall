@@ -31,4 +31,5 @@
 , Ssh = ./environments/ssh.dhall
 , Firefox = ./environments/firefox.dhall
 , YoutubeDL = ./environments/youtube-dl.dhall
+, Zeal = ./environments/zeal.dhall
 }

@@ -64,4 +64,5 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
         , (./runtimes/fedora/create.dhall).Fusion Envs.Mplayer
         , Envs.StreamTuner
         , Envs.YoutubeDL
+        , Envs.Zeal
         ]
