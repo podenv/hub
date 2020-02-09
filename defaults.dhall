@@ -52,6 +52,7 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
         , Envs.Maim
         , Envs.Tor.Browser
         , Envs.Ssh.Client
+        , Envs.Gimp
         , Envs.Git.Git
         , Envs.Git.PullRequest
         , Envs.Git.Review

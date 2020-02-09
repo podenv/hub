@@ -24,6 +24,7 @@
 , PythonHTTPServer = ./environments/python-http-server.dhall
 , Reno = ./environments/reno.dhall
 , Tor = ./environments/tor.dhall
+, Gimp = ./environments/gimp.dhall
 , Git = ./environments/git.dhall
 , Emacs = ./environments/emacs.dhall
 , Codium = ./environments/codium.dhall
