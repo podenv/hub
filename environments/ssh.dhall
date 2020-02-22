@@ -57,11 +57,11 @@ let Vpn =
                     # [ "iproute" ]
                   )
               , command = Some
-                  [ "ssh"
-                  , "-w"
-                  , "1:${Natural/show remote-tun}"
-                  , "${remote-user}@${remote-host}"
-                  ]
+                [ "ssh"
+                , "-w"
+                , "1:${Natural/show remote-tun}"
+                , "${remote-user}@${remote-host}"
+                ]
               }
 
 let VpnTemplates = { Slot1 = Vpn "172.30.1.1" "172.30.1.2" 1 }

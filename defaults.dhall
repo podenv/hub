@@ -29,10 +29,10 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
         //  { name = "fedora-devel"
             , user = None (./Podenv.dhall).Types.User
             , mounts = Some
-                [ ./functions/mkMount.dhall
-                    "/var/cache/dnf"
-                    "~/.cache/podenv/dnf-rawhide"
-                ]
+              [ ./functions/mkMount.dhall
+                  "/var/cache/dnf"
+                  "~/.cache/podenv/dnf-rawhide"
+              ]
             }
       ]
     # FedoraEnvs

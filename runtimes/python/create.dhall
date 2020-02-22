@@ -27,9 +27,9 @@ let Base
                           ]
                       )
                   , container-update = Some
-                      [ ../fedora/update.dhall
-                      , ./install.dhall (../getPackages.dhall env.packages)
-                      ]
+                    [ ../fedora/update.dhall
+                    , ./install.dhall (../getPackages.dhall env.packages)
+                    ]
                   }
 
 in  { Latest = Base }

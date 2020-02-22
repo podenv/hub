@@ -34,12 +34,12 @@ let Base
                           ]
                       )
                   , container-update = Some
-                      [ ../fedora/update.dhall
-                      , Task::{
-                        , name = Some "Update yarn"
-                        , shell = Some "npm update -g yarn"
-                        }
-                      ]
+                    [ ../fedora/update.dhall
+                    , Task::{
+                      , name = Some "Update yarn"
+                      , shell = Some "npm update -g yarn"
+                      }
+                    ]
                   }
 
 in  { Latest = Base }

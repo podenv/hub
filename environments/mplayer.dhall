@@ -4,11 +4,11 @@
   )
   (     ./_graphicEditor.dhall "mplayer" "Media player software"
     //  { packages = Some
-            [ "mplayer"
-            , "libvdpau-va-gl"
-            , "mesa-dri-drivers"
-            , "libva-intel-driver"
-            , "libva-intel-hybrid-driver"
-            ]
+          [ "mplayer"
+          , "libvdpau-va-gl"
+          , "mesa-dri-drivers"
+          , "libva-intel-driver"
+          , "libva-intel-hybrid-driver"
+          ]
         }
   )

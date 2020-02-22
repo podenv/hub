@@ -56,7 +56,7 @@ let {- A simple standalone environment to edit dhall file
           , name = "dhall-editor"
           , description = Some "Emacs dhall editor"
           , command = Some
-              [ "emacs", "--no-splash", "--load", "~/.emacs.d/init.el" ]
+            [ "emacs", "--no-splash", "--load", "~/.emacs.d/init.el" ]
           , capabilities = (../schemas/Caps)::{
             , x11 = Some True
             , terminal = Some True
@@ -83,12 +83,12 @@ let {- A simple standalone environment to edit dhall file
                 , ../runtimes/downloadGit.dhall build-cache reformatter
                 ]
           , volumes = Some
-              [ { name = "dhall-editor-config"
-                , container-path = "~/.emacs.d/"
-                , files = Some
-                    [ { name = "init.el", content = ./emacs-dhall.el as Text } ]
-                }
-              ]
+            [ { name = "dhall-editor-config"
+              , container-path = "~/.emacs.d/"
+              , files = Some
+                [ { name = "init.el", content = ./emacs-dhall.el as Text } ]
+              }
+            ]
           }
 
 let ConfigEditor =
@@ -104,12 +104,12 @@ let ConfigEditor =
                 (../functions/addMountMap.dhall "~/.config/podenv" DhallEditor)
             )
       //  { command = Some
-              [ "emacs"
-              , "--no-splash"
-              , "--load"
-              , "~/.emacs.d/init.el"
-              , "~/.config/podenv/config.dhall"
-              ]
+            [ "emacs"
+            , "--no-splash"
+            , "--load"
+            , "~/.emacs.d/init.el"
+            , "~/.config/podenv/config.dhall"
+            ]
           }
 
 in  { Nox =
