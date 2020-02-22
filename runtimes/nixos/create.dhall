@@ -19,7 +19,7 @@ let Nix =
                     # Adapted from https://github.com/NixOS/docker/blob/master/Dockerfile
                     FROM registry.fedoraproject.org/fedora:latest
 
-                    RUN dnf update -y && dnf install -y xz                                                           \
+                    RUN dnf update -y && dnf install -y xz ncurses-compat-libs                                       \
                       && useradd -u 1000 -d /home/user -m user && mkdir -p /run/user/1000                            \
                       && chown 1000:1000 /run/user/1000 && mkdir -p /run/user/0 && chown 0:0 /run/user/0
 
