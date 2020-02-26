@@ -11,6 +11,7 @@
 , Xeyes = ./environments/xeyes.dhall
 , Mupdf = ./environments/mupdf.dhall
 , Feh = ./environments/feh.dhall
+, GworldClock = ./environments/gworldclock.dhall
 , Hugo = ./environments/hugo.dhall
 , Inkscape = ./environments/inkscape.dhall
 , Libreoffice = ./environments/libreoffice.dhall

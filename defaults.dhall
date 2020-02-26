@@ -3,6 +3,10 @@
 
 let Envs = ./environments.dhall
 
+let DebianEnvs =
+      ./functions/mapEnv.dhall
+        (\(env : ./types/Env) -> (./runtimes/debian/create.dhall).Latest env)
+
 let FedoraEnvs =
       ./functions/mapEnv.dhall
         (\(env : ./types/Env) -> (./runtimes/fedora/create.dhall).Latest env)
@@ -35,6 +39,7 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
               ]
             }
       ]
+    # DebianEnvs [ Envs.GworldClock ]
     # FedoraEnvs
         [ Envs.Shell
         , Envs.Pavucontrol
