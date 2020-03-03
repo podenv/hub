@@ -10,6 +10,7 @@
 , Pavucontrol = ./environments/pavucontrol.dhall
 , Xeyes = ./environments/xeyes.dhall
 , Mupdf = ./environments/mupdf.dhall
+, Fedora = ./environments/fedora.dhall
 , Feh = ./environments/feh.dhall
 , GworldClock = ./environments/gworldclock.dhall
 , Hugo = ./environments/hugo.dhall

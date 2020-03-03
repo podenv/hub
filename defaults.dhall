@@ -19,7 +19,7 @@ let PythonEnvs =
       ./functions/mapEnv.dhall
         (\(env : ./types/Env) -> (./runtimes/python/create.dhall).Latest env)
 
-in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
+in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall, Envs.Fedora.Devel ]
     # NodeEnvs
         [ Envs.Node.Node
         , Envs.Node.Npm
@@ -29,15 +29,6 @@ in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall ]
     # PythonEnvs [ Envs.Reno ]
     # [     (./runtimes/nixos/create.dhall).Default Envs.Shell
         //  { name = "nix-shell" }
-      ,     (./runtimes/fedora/create.dhall).Devel Envs.Shell
-        //  { name = "fedora-devel"
-            , user = None (./Podenv.dhall).Types.User
-            , mounts = Some
-              [ ./functions/mkMount.dhall
-                  "/var/cache/dnf"
-                  "~/.cache/podenv/dnf-rawhide"
-              ]
-            }
       ]
     # DebianEnvs [ Envs.GworldClock ]
     # FedoraEnvs
