@@ -35,20 +35,28 @@ in  { Latest = Base latest ([] : List Task)
     , Base = Base
     , Fusion = Base latest [ ./fusion.dhall latest ]
     , Devel =
-        Base
-          "rawhide"
-          [ ./install.dhall
-              [ "git"
-              , "make"
-              , "rpmdevtools"
-              , "createrepo_c"
-              , "pkgconfig"
-              , "python3-devel"
-              , "systemd-devel"
-              , "libtool"
-              , "gcc-c++"
-              , "emacs"
-              , "dnf-utils"
-              ]
-          ]
+            \(env : Env)
+        ->  Base
+              "rawhide"
+              ([] : List Task)
+              (     env
+                //  { packages = Some
+                        (   [ "git"
+                            , "make"
+                            , "rpmdevtools"
+                            , "createrepo_c"
+                            , "pkgconfig"
+                            , "python3-devel"
+                            , "systemd-devel"
+                            , "libtool"
+                            , "gcc-c++"
+                            , "emacs"
+                            , "dnf-utils"
+                            , "fedpkg"
+                            , "krb5-workstation"
+                            ]
+                          # ../getPackages.dhall env.packages
+                        )
+                    }
+              )
     }
