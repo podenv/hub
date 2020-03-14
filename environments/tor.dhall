@@ -11,7 +11,8 @@ let Browser =
         )
         (     ../functions/mkSimpleEnv.dhall "tor-browser" "Tor browser"
           //  { command = Some [ "torbrowser-launcher" ]
-              , packages = Some [ "torbrowser-launcher", "dbus-glib", "libXt" ]
+              , packages = Some
+                [ "torbrowser-launcher", "dbus-glib", "libXt", "gtk3" ]
               , mounts = Some
                 [ ../functions/mkMountMap.dhall "~/.cache/torbrowser"
                 , ../functions/mkMountMap.dhall "~/.config/torbrowser"
