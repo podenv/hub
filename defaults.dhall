@@ -19,7 +19,11 @@ let PythonEnvs =
       ./functions/mapEnv.dhall
         (\(env : ./types/Env) -> (./runtimes/python/create.dhall).Latest env)
 
-in    [ Envs.Emacs.DhallEditor, ./runtimes/fedora/env.dhall, Envs.Fedora.Devel ]
+in    [ Envs.Emacs.DhallEditor
+      , ./runtimes/fedora/env.dhall
+      , ./runtimes/debian/env.dhall
+      , Envs.Fedora.Devel
+      ]
     # NodeEnvs
         [ Envs.Node.Node
         , Envs.Node.Npm
