@@ -14,6 +14,8 @@ let Base
       ->  \(env : Env)
       ->      env
           //  { build-env = ./build-env.dhall version
+              , environ = Some
+                  (../getEnviron.dhall env # toMap { LANG = "C.utf8" })
               , user = Some (../defaultUser.dhall env.user)
               , container-update =
                   ../defaultFile.dhall env.container-update [ ./update.dhall ]
