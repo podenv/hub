@@ -21,8 +21,10 @@ let PythonEnvs =
 
 in    [ Envs.Emacs.DhallEditor
       , ./runtimes/fedora/env.dhall
+      , ./runtimes/centos/env.dhall
       , ./runtimes/debian/env.dhall
       , Envs.Fedora.Devel
+      , Envs.CentOS.Devel
       ]
     # NodeEnvs
         [ Envs.Node.Node
