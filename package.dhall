@@ -15,7 +15,7 @@
 , Functions =
     ./functions.dhall sha256:ef90e9f57b1be9e3ae2bdafdddcbbe817500626b18eb0c694dd61473c16d5ec8
 , Runtimes =
-    ./runtimes.dhall sha256:c22e58f05ac82738d98b40ff48e09a64b2602535c57a6f90fda429b7c1fc8ccd
+    ./runtimes.dhall sha256:09f7dd85b273fa62985005c7747edc0f328075f8c2edaf4fe5ac61ee4b7e00c1
 , Prelude =
     ./Prelude.dhall sha256:aea6817682359ae1939f3a15926b84ad5763c24a3740103202d2eaaea4d01f4c
 }

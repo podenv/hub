@@ -44,3 +44,9 @@ def listdir(dname):
     return list(map(lambda s: "./" + str(dname / s), filter(lambda s: s.endswith(".dhall"), os.listdir(dname))))
 
 write(Path("environments.dhall"), listdir(Path("./environments/")))
+
+def listruntime(dname):
+    return list(map(lambda s: "./runtimes/" + s + "/package.dhall",
+                    filter(lambda s: (Path("runtimes") / s).is_dir(), os.listdir(dname))))
+
+write(Path("runtimes.dhall"), listruntime("./runtimes"))
