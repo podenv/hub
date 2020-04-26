@@ -24,7 +24,7 @@ in    [ Envs.Emacs.DhallEditor
       , ./runtimes/centos/env.dhall
       , ./runtimes/debian/env.dhall
       , Envs.Fedora.Devel
-      , Envs.CentOS.Devel
+      , Envs.Centos.Devel
       ]
     # NodeEnvs
         [ Envs.Node.Node
@@ -36,7 +36,7 @@ in    [ Envs.Emacs.DhallEditor
     # [     (./runtimes/nixos/create.dhall).Default Envs.Shell
         //  { name = "nix-shell" }
       ]
-    # DebianEnvs [ Envs.GworldClock ]
+    # DebianEnvs [ Envs.Gworldclock ]
     # FedoraEnvs
         [ Envs.Shell
         , Envs.Pavucontrol
@@ -49,8 +49,8 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Linphone
         , Envs.Mumble
         , (./runtimes/fedora/create.dhall).Fusion Envs.Obs
-        , Envs.OpenVPN
-        , Envs.PythonHTTPServer.Default
+        , Envs.Openvpn
+        , Envs.PythonHttpServer.Default
         , Envs.Maim
         , Envs.Tor.Browser
         , Envs.Ssh.Client
@@ -64,7 +64,7 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Firefox.Minimal
         , (./runtimes/fedora/create.dhall).Fusion Envs.Firefox.WithCodecs
         , (./runtimes/fedora/create.dhall).Fusion Envs.Mplayer
-        , Envs.StreamTuner
-        , Envs.YoutubeDL
+        , Envs.Streamtuner
+        , Envs.YoutubeDl
         , Envs.Zeal
         ]

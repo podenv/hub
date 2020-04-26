@@ -2,7 +2,7 @@
   (     \(env : ../types/Env)
     ->  env.capabilities // { pulseaudio = Some True, dri = Some True }
   )
-  (     ./_graphicEditor.dhall "mplayer" "Media player software"
+  (     ../functions/mkGraphicEditor.dhall "mplayer" "Media player software"
     //  { packages = Some
           [ "mplayer"
           , "libvdpau-va-gl"

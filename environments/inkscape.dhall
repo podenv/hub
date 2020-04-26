@@ -1,1 +1,1 @@
-./_graphicEditor.dhall "inkscape" "Open a svg file"
+../functions/mkGraphicEditor.dhall "inkscape" "Open a svg file"

@@ -1,1 +1,1 @@
-./_graphicEditor.dhall "feh" "Display an image file"
+../functions/mkGraphicEditor.dhall "feh" "Display an image file"

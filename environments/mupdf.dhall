@@ -1,1 +1,1 @@
-./_graphicEditor.dhall "mupdf" "Display a pdf file"
+../functions/mkGraphicEditor.dhall "mupdf" "Display a pdf file"

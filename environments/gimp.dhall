@@ -1,1 +1,1 @@
-./_graphicEditor.dhall "gimp" "Raster graphics editor"
+../functions/mkGraphicEditor.dhall "gimp" "Raster graphics editor"
