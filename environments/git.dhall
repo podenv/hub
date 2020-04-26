@@ -13,10 +13,11 @@ let Pull =
       //  { name = "git-pull", command = Some [ "git", "pull" ] }
 
 let PullRequest =
-          ../functions/addPackages.dhall [ "git-pull-request" ] Pull
+          Pull
       //  { name = "git-pull-request"
           , description = Some "Submit github/pagure PR"
-          , command = Some [ "git-pull-request", "--no-comment-on-update" ]
+          , command = Some [ "git-pull-request" ]
+          , packages = Some [ "git-pull-request" ]
           }
 
 let Review =

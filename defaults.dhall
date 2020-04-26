@@ -32,7 +32,7 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Node.Yarn
         , Envs.Node.ReactScripts
         ]
-    # PythonEnvs [ Envs.Reno ]
+    # PythonEnvs [ Envs.Reno, Envs.Git.PullRequest ]
     # [     (./runtimes/nixos/create.dhall).Default Envs.Shell
         //  { name = "nix-shell" }
       ]
@@ -56,7 +56,6 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Ssh.Client
         , Envs.Gimp
         , Envs.Git.Git
-        , Envs.Git.PullRequest
         , Envs.Git.Review
         , Envs.Emacs.Nox
         , Envs.Emacs.IDE

@@ -7,7 +7,7 @@ let Base
     =     \(env : Env)
       ->  let fedora =
                 (../fedora/create.dhall).Latest
-                  (env // { packages = Some [ "python3-pip" ] })
+                  (env // { packages = Some [ "python3-pip", "git" ] })
 
           in      fedora
               //  { build-env = Some
