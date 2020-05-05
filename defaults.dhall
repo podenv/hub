@@ -45,6 +45,7 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Feh
         , Envs.Hugo
         , Envs.Inkscape
+        , Envs.Kigo
         , Envs.Libreoffice
         , Envs.Linphone
         , Envs.Mumble

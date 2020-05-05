@@ -22,6 +22,8 @@
     ./environments/hugo.dhall sha256:1a93b40a26c2ae85d37f7a8ba44601a1b95ebbc31996ba433c1057e0da8f1539
 , Inkscape =
     ./environments/inkscape.dhall sha256:d7038b13f1c550436522f9efdd77b6defa7a9c6b5b0ef01a84bc95dda5341660
+, Kigo =
+    ./environments/kigo.dhall sha256:4d7411e62b215ab973580b38a4e6c39352a166bb30819214fb26f47cfee28027
 , Libreoffice =
     ./environments/libreoffice.dhall sha256:c1e80d72f0a1d7b41b8c3daf44819c95f97c97bc2dec4a063618411e40702b12
 , Linphone =
