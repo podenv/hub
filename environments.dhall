@@ -1,5 +1,5 @@
 { Centos =
-    ./environments/centos.dhall sha256:96cc1fc4dceba2ebebbcabfa16c156893b9c79f1835875d393fa919c6e9ccfbc
+    ./environments/centos.dhall sha256:c6a861a341cf7bc2f2e53428630b60b0d659dfe10d252037d9ddad2e461cb5ce
 , Chromium =
     ./environments/chromium.dhall sha256:2eb060c9c41a7fe854f47b804b257b23c6b2c28047e14e57a457ebbf8dcbdebf
 , Codium =

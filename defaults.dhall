@@ -25,6 +25,7 @@ in    [ Envs.Emacs.DhallEditor
       , ./runtimes/debian/env.dhall
       , Envs.Fedora.Devel
       , Envs.Centos.Devel
+      , Envs.Centos.Devel7
       ]
     # NodeEnvs
         [ Envs.Node.Node

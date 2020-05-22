@@ -36,26 +36,30 @@ let Base
 
 let latest = 8
 
+let DevelBase =
+          \(version : Natural)
+      ->  \(env : Env)
+      ->  Base
+            version
+            ([] : List Task)
+            (     env
+              //  { packages = Some
+                    [ "git"
+                    , "make"
+                    , "rpmdevtools"
+                    , "createrepo_c"
+                    , "pkgconfig"
+                    , "python3-devel"
+                    , "systemd-devel"
+                    , "libtool"
+                    , "gcc-c++"
+                    ]
+                  }
+            )
+
 in  { Latest = Base latest ([] : List Task)
     , EL7 = Base 7 ([] : List Task)
     , Base = Base
-    , Devel =
-            \(env : Env)
-        ->  Base
-              latest
-              ([] : List Task)
-              (     env
-                //  { packages = Some
-                      [ "git"
-                      , "make"
-                      , "rpmdevtools"
-                      , "createrepo_c"
-                      , "pkgconfig"
-                      , "python3-devel"
-                      , "systemd-devel"
-                      , "libtool"
-                      , "gcc-c++"
-                      ]
-                    }
-              )
+    , DevelBase = DevelBase
+    , Devel = DevelBase latest
     }

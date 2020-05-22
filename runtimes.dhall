@@ -1,5 +1,5 @@
 { Centos =
-    ./runtimes/centos/package.dhall sha256:bd3f22d93a2367bfe9087387eb6e4aeccb256b7fe7c86f1c7e4369cfe9eaf115
+    ./runtimes/centos/package.dhall sha256:cbea5a02f0a81115f9116a039cce9f570a95716c47e601b2887f2703887d1381
 , Debian =
     ./runtimes/debian/package.dhall sha256:24354db522f06dae0f246024026457f9990131eefba110c487cc047c8f5cc9a3
 , Fedora =
