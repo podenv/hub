@@ -1,3 +1,5 @@
+let Dhall = (./dhall.dhall).Commands
+
 let Emacs =
       ../functions/addPackages.dhall
         [ "findutils", "grep" ]
@@ -34,9 +36,6 @@ let IDE =
 let {- A simple standalone environment to edit dhall file
     -} DhallEditor =
       let build-cache = "~/.cache/podenv/buildStore"
-
-      let dhall =
-            "https://copr-be.cloud.fedoraproject.org/results/tdecacqu/dhall/fedora-rawhide-x86_64/01192146-dhall/dhall-1.29.0-1.fc32.x86_64.rpm"
 
       let dhall-mode =
             { name = "dhall-mode"
@@ -76,9 +75,12 @@ let {- A simple standalone environment to edit dhall file
           , container-file =
               ../runtimes/fromTextList.dhall
                 [ "FROM registry.fedoraproject.org/fedora:latest"
-                , "RUN dnf install -y emacs git bzip2 ${dhall}"
+                , "RUN dnf install -y emacs git bzip2"
                 ,     "RUN useradd -u 1000 -m user && "
                   ++  "mkdir /home/user/.cache /home/user/.config && chown -R user /home/user"
+                , Dhall.`1.33`.base
+                , Dhall.`1.33`.json
+                , Dhall.cache.Prelude "v17.0.0"
                 , ../runtimes/downloadGit.dhall build-cache dhall-mode
                 , ../runtimes/downloadGit.dhall build-cache reformatter
                 ]

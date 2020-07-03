@@ -4,8 +4,10 @@
     ./environments/chromium.dhall sha256:2eb060c9c41a7fe854f47b804b257b23c6b2c28047e14e57a457ebbf8dcbdebf
 , Codium =
     ./environments/codium.dhall sha256:83360c87bb3bf018e11d3f301765516e1234b0ee71abdc748a191ac30754e4a9
+, Dhall =
+    ./environments/dhall.dhall sha256:c63a23366c5efea53817f4ab145cc67a3f96c3df9bde20ca007f46501e9df09d
 , Emacs =
-    ./environments/emacs.dhall sha256:c00c3e8629dade0be59dbc052bb33e3a6cce5d283822cb20cfcce3790e8deafb
+    ./environments/emacs.dhall sha256:ee59db3120d9e3bc30a13c8a3f34917f9a89f65ffcff14a09a7cde3699640da9
 , Fedora =
     ./environments/fedora.dhall sha256:c8efcc728d84b6911b54cfe6be314d6f6a18266ef13094ca21583800d00e5633
 , Feh =
