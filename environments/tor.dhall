@@ -1,13 +1,13 @@
 let Browser =
       ../functions/addCap.dhall
-        (     \(env : ../types/Env)
-          ->      env.capabilities
-              //  { network = Some True
-                  , x11 = Some True
-                  , mount-run = Some True
-                  , foreground = Some True
-                  , large-shm = Some True
-                  }
+        ( \(env : ../types/Env) ->
+                env.capabilities
+            //  { network = Some True
+                , x11 = Some True
+                , mount-run = Some True
+                , foreground = Some True
+                , large-shm = Some True
+                }
         )
         (     ../functions/mkSimpleEnv.dhall "tor-browser" "Tor browser"
           //  { command = Some [ "torbrowser-launcher" ]
@@ -22,4 +22,4 @@ let Browser =
               }
         )
 
-in  { Browser = Browser }
+in  { Browser }

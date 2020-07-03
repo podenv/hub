@@ -1,3 +1,3 @@
-    \(value : Optional Text)
-->  \(default : Text)
-->  Optional/fold Text value Text (\(some : Text) -> some) default
+\(value : Optional Text) ->
+\(default : Text) ->
+  merge { None = default, Some = \(some : Text) -> some } value

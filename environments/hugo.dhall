@@ -1,6 +1,6 @@
     ../functions/addCap.dhall
-      (     \(env : ../types/Env)
-        ->  env.capabilities // { mount-cwd = Some True, uidmap = Some True }
+      ( \(env : ../types/Env) ->
+          env.capabilities // { mount-cwd = Some True, uidmap = Some True }
       )
       ( ../functions/mkSimpleEnv.dhall
           "hugo"

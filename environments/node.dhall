@@ -1,14 +1,14 @@
 let Node =
       ../functions/addCap.dhall
-        (     \(env : ../types/Env)
-          ->  env.capabilities // { terminal = Some True, network = Some True }
+        ( \(env : ../types/Env) ->
+            env.capabilities // { terminal = Some True, network = Some True }
         )
         (../functions/mkSimpleEnv.dhall "node" "JavaScript runtime environment")
 
 let Npm =
       ../functions/addCap.dhall
-        (     \(env : ../types/Env)
-          ->  env.capabilities // { mount-cwd = Some True, uidmap = Some True }
+        ( \(env : ../types/Env) ->
+            env.capabilities // { mount-cwd = Some True, uidmap = Some True }
         )
         (     Node
           //  { name = "npm"
@@ -21,12 +21,12 @@ let Yarn = Npm // { name = "yarn", command = Some [ "yarn" ] }
 
 let ReactScripts =
           ../functions/addCap.dhall
-            (     \(env : ../types/Env)
-              ->      env.capabilities
-                  //  { network = Some False
-                      , large-shm = Some True
-                      , x11 = Some True
-                      }
+            ( \(env : ../types/Env) ->
+                    env.capabilities
+                //  { network = Some False
+                    , large-shm = Some True
+                    , x11 = Some True
+                    }
             )
             Yarn
       //  { name = "react-scripts"
@@ -39,4 +39,4 @@ let ReactScripts =
             ]
           }
 
-in  { Node = Node, Npm = Npm, Yarn = Yarn, ReactScripts = ReactScripts }
+in  { Node, Npm, Yarn, ReactScripts }

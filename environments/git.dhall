@@ -27,4 +27,4 @@ let Review =
           , command = Some [ "git-review" ]
           }
 
-in  { Git = Git, Pull = Pull, PullRequest = PullRequest, Review = Review }
+in  { Git, Pull, PullRequest, Review }
