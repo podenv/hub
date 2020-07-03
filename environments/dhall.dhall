@@ -15,7 +15,7 @@ let Commands =
 
               in  Text/concatSep
                     " && "
-                    [ "curl -OL ${gh-url}/${version}/${dhall-name}-x86_64-linux.tar.bz2"
+                    [ "RUN curl -OL ${gh-url}/${version}/${dhall-name}-x86_64-linux.tar.bz2"
                     , "echo '${sub-hash}  ${dhall-name}-x86_64-linux.tar.bz2' | sha256sum -c"
                     , "tar -xf ${dhall-name}-x86_64-linux.tar.bz2 --strip-components=2 -j --mode='a+x' -C /usr/bin"
                     , "rm ${dhall-name}-x86_64-linux.tar.bz2"
@@ -68,7 +68,7 @@ let Commands =
                     \(dest : Text) ->
                     \(env-name : Text) ->
                     \(env-val : Text) ->
-                          "git clone --branch ${tag} --depth 1 ${repo} /usr/share/${dest} && "
+                          "RUN git clone --branch ${tag} --depth 1 ${repo} /usr/share/${dest} && "
                       ++  "mkdir -p /root/.cache && "
                       ++  ''
                           dhall hash <<< '/usr/share/${dest}/${env-val}'
