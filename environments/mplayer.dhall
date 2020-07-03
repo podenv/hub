@@ -1,6 +1,6 @@
 ../functions/addCap.dhall
-  (     \(env : ../types/Env)
-    ->  env.capabilities // { pulseaudio = Some True, dri = Some True }
+  ( \(env : ../types/Env) ->
+      env.capabilities // { pulseaudio = Some True, dri = Some True }
   )
   (     ../functions/mkGraphicEditor.dhall "mplayer" "Media player software"
     //  { packages = Some

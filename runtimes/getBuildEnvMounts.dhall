@@ -1,14 +1,13 @@
 let Podenv = ../Podenv.dhall
 
 let get
-    :     forall (build-env : Optional Podenv.Types.BuildEnv)
-      ->  List Podenv.Types.Mount
-    =     \(build-env : Optional Podenv.Types.BuildEnv)
-      ->  Optional/fold
-            Podenv.Types.BuildEnv
-            build-env
-            (List Podenv.Types.Mount)
-            (\(some : Podenv.Types.BuildEnv) -> some.mounts)
-            ([] : List Podenv.Types.Mount)
+    : forall (build-env : Optional Podenv.Types.BuildEnv) ->
+        List Podenv.Types.Mount
+    = \(build-env : Optional Podenv.Types.BuildEnv) ->
+        merge
+          { None = [] : List Podenv.Types.Mount
+          , Some = \(some : Podenv.Types.BuildEnv) -> some.mounts
+          }
+          build-env
 
 in  get

@@ -119,8 +119,8 @@ in  { Nox =
                 "Extensible text editor (minimal terminal mode)"
             , command = Some [ "emacs", "-nw" ]
             }
-    , Graphic = Graphic
-    , IDE = IDE
-    , DhallEditor = DhallEditor
-    , ConfigEditor = ConfigEditor
+    , Graphic
+    , IDE
+    , DhallEditor
+    , ConfigEditor
     }

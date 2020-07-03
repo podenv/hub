@@ -1,4 +1,4 @@
-    \(env : ../types/Env)
-->  ../functions/optionalTaskList.dhall
-      env.container-file
-      ([] : List ../types/Task)
+\(env : ../types/Env) ->
+  ../functions/optionalTaskList.dhall
+    env.container-file
+    ([] : List ../types/Task)

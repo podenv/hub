@@ -27,7 +27,7 @@ in  { Minimal =
         //  { name = "firefox-light"
             , description = Some "Mozilla Firefox (without dri)"
             }
-    , Extended = Extended
+    , Extended
     , WithCodecs =
         WithCodecs // { name = "firefox", description = Some "Mozilla Firefox" }
     }

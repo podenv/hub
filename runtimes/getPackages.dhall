@@ -2,12 +2,9 @@
 -}
 let getPackages
     : forall (packages : Optional (List Text)) -> List Text
-    =     \(packages : Optional (List Text))
-      ->  Optional/fold
-            (List Text)
-            packages
-            (List Text)
-            (\(some : List Text) -> some)
-            ([] : List Text)
+    = \(packages : Optional (List Text)) ->
+        merge
+          { None = [] : List Text, Some = \(some : List Text) -> some }
+          packages
 
 in  getPackages

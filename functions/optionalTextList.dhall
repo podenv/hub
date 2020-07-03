@@ -1,8 +1,3 @@
-    \(value : Optional (List Text))
-->  \(default : List Text)
-->  Optional/fold
-      (List Text)
-      value
-      (List Text)
-      (\(some : List Text) -> some)
-      default
+\(value : Optional (List Text)) ->
+\(default : List Text) ->
+  merge { None = default, Some = \(some : List Text) -> some } value

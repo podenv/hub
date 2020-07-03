@@ -2,13 +2,13 @@
 -}
 let mkSimple
     : forall (name : Text) -> forall (description : Text) -> ../types/Env
-    =     \(name : Text)
-      ->  \(description : Text)
-      ->  (../schemas/Env)::{
-          , name = name
-          , description = Some description
-          , packages = Some [ name ]
-          , command = Some [ name ]
-          }
+    = \(name : Text) ->
+      \(description : Text) ->
+        (../schemas/Env)::{
+        , name
+        , description = Some description
+        , packages = Some [ name ]
+        , command = Some [ name ]
+        }
 
 in  mkSimple
