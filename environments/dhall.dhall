@@ -83,6 +83,21 @@ let Commands =
                           "dhall-lang"
                           "DHALL_PRELUDE"
                           "Prelude/package.dhall"
+                  , Kubernetes =
+                      \(version : Text) ->
+                        DhallCacheCommand
+                          "https://github.com/dhall-lang/dhall-kubernetes"
+                          version
+                          "dhall-kubernetes"
+                          "DHALL_KUBERNETES"
+                          "package.dhall"
+                  , Podenv =
+                      DhallCacheCommand
+                        "https://github.com/podenv/hub"
+                        "master"
+                        "hub"
+                        "DHALL_PODENV"
+                        "package.dhall"
                   , Prometheus =
                       DhallCacheCommand
                         "https://github.com/TristanCacqueray/dhall-prometheus"
