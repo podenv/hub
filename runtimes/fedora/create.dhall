@@ -30,7 +30,7 @@ let Base
                   )
             }
 
-let latest = "31"
+let latest = "32"
 
 in  { Latest = Base latest ([] : List Task)
     , Rawhide = Base "rawhide"

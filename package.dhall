@@ -7,7 +7,7 @@
    * 'Prelude' is a copy of the dhall-lang library 'Prelude'.
 -}
 { Defaults =
-      ./defaults.dhall sha256:36c74d0bfa848aea1f987f771c949800cf4519f789927bedd984a0c273413a9f
+      ./defaults.dhall sha256:2928fe11993fd6085f10b414f750d0720d82ccb89d947af23a412952a97bf709
     : List
         ./types/Env sha256:9b693282e67cb6b033e0156e7722bd022dca4c4bee3591c5d77222efe1d15b8e
 , Environments =
@@ -15,7 +15,7 @@
 , Functions =
     ./functions.dhall sha256:2e3b9907ee9d63bf5e3b76ad6e042c749a924a5e6bd72d7f2570951cb762f1f2
 , Runtimes =
-    ./runtimes.dhall sha256:fa9a613ed70d90ab07b9cba16910f7f8fbe33605995efd206b34e13f268d85d4
+    ./runtimes.dhall sha256:b9cf5fc66ba2e6248ad7cc38537b80bbe57ee8c27f031fad0a054232e7152875
 , Prelude =
     ./Prelude.dhall sha256:10db3c919c25e9046833df897a8ffe2701dc390fa0893d958c3430524be5a43e
 }
