@@ -35,7 +35,7 @@
 , Mplayer =
     ./environments/mplayer.dhall sha256:2cde412942e2accf7a05f62ac032c8ab33b554f7424b05e19c5373269bc8fe26
 , Mumble =
-    ./environments/mumble.dhall sha256:8b274550d24be8ecd7c0cc1a3534540dd4f83e0f1337edd0ef5e3a708e28f9df
+    ./environments/mumble.dhall sha256:66e9ffa75e68a0704f3ff1760bd02a4a03896d1c36ac28e2951eefc932d2f5ca
 , Mupdf =
     ./environments/mupdf.dhall sha256:75acb9246b80ceba681f0667e2fa0f1b01d326526ea2e9e093065b979a541c9b
 , Node =
