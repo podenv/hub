@@ -17,6 +17,8 @@ let Extended =
         , "mesa-dri-drivers"
         , "libva-intel-driver"
         , "libva-intel-hybrid-driver"
+        , "libcanberra-gtk3"
+        , "pulseaudio-libs"
         ]
         (../functions/capMedia.dhall Minimal)
 
