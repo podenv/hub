@@ -13,7 +13,7 @@
 , Feh =
     ./environments/feh.dhall sha256:da9ee35c26b40f9fb866656becb0653b21f2b733e27eb19149a5c00b2253264d
 , Firefox =
-    ./environments/firefox.dhall sha256:a845fd210dcb6641d1ec95399704e3c2b2effe758b6dd93fca087d7a5059597c
+    ./environments/firefox.dhall sha256:4132d862480b5e6647417b217f2e8c65b582464a22bd622cd1c8390611c8961a
 , Gimp =
     ./environments/gimp.dhall sha256:6e1e83b6db1af7e817b3d140060f4f07907dcf52a647d23271c972f2868b94a6
 , Git =
