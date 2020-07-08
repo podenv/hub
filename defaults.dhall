@@ -71,8 +71,4 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Zeal
         ]
     # FedoraFusionEnvs [ Envs.Obs, Envs.Firefox.WithCodecs, Envs.Mplayer ]
-    # [ (./runtimes/fedora/create.dhall).Base
-          (./runtimes/fedora/create.dhall).LatestVersion
-          [ Envs.Codium.Repo ]
-          Envs.Codium.Env
-      ]
+    # [ Envs.Codium.FedoraRuntime Envs.Codium.Env ]
