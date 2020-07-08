@@ -11,6 +11,10 @@ let FedoraEnvs =
       ./functions/mapEnv.dhall
         (\(env : ./types/Env) -> (./runtimes/fedora/create.dhall).Latest env)
 
+let FedoraFusionEnvs =
+      ./functions/mapEnv.dhall
+        (\(env : ./types/Env) -> (./runtimes/fedora/create.dhall).Fusion env)
+
 let NodeEnvs =
       ./functions/mapEnv.dhall
         (\(env : ./types/Env) -> (./runtimes/node/create.dhall).Latest env)
@@ -50,7 +54,6 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Libreoffice
         , Envs.Linphone
         , Envs.Mumble
-        , (./runtimes/fedora/create.dhall).Fusion Envs.Obs
         , Envs.Openvpn
         , Envs.PythonHttpServer.Default
         , Envs.Maim
@@ -61,15 +64,15 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Git.Review
         , Envs.Emacs.Nox
         , Envs.Emacs.IDE
-        , (./runtimes/fedora/create.dhall).Base
-            (./runtimes/fedora/create.dhall).LatestVersion
-            [ Envs.Codium.Repo ]
-            Envs.Codium.Env
         , Envs.Chromium
         , Envs.Firefox.Minimal
-        , (./runtimes/fedora/create.dhall).Fusion Envs.Firefox.WithCodecs
-        , (./runtimes/fedora/create.dhall).Fusion Envs.Mplayer
         , Envs.Streamtuner
         , Envs.YoutubeDl
         , Envs.Zeal
         ]
+    # FedoraFusionEnvs [ Envs.Obs, Envs.Firefox.WithCodecs, Envs.Mplayer ]
+    # [ (./runtimes/fedora/create.dhall).Base
+          (./runtimes/fedora/create.dhall).LatestVersion
+          [ Envs.Codium.Repo ]
+          Envs.Codium.Env
+      ]
