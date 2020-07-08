@@ -3,7 +3,7 @@
 , Chromium =
     ./environments/chromium.dhall sha256:2eb060c9c41a7fe854f47b804b257b23c6b2c28047e14e57a457ebbf8dcbdebf
 , Codium =
-    ./environments/codium.dhall sha256:55d9591a33a1cbc685cee41b56003df0c0ae0011c430a048e236493bdcebb0f4
+    ./environments/codium.dhall sha256:909adeb4704b23ba0fad269f2f8ef6bffbd14aae7f157e3398201c800598f193
 , Dhall =
     ./environments/dhall.dhall sha256:4e9d70642bfb4c2c66aaab5be740c9e43982fe18a74f4a5234fd65f443c9af72
 , Emacs =
