@@ -3,6 +3,7 @@
 { addArg = ./functions/addArg.dhall
 , addArgs = ./functions/addArgs.dhall
 , addCap = ./functions/addCap.dhall
+, addPackages = ./functions/addPackages.dhall
 , addTasks = ./runtimes/addTasks.dhall
 , createUser = ./runtimes/createUser.dhall
 , concatPackages = ./functions/concatPackages.dhall

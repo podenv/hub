@@ -13,7 +13,7 @@
 , Environments =
     ./environments.dhall sha256:47257f43930893311c9b53a226d8c7a4fc443fdb537a13e3fc97d5a85beb61eb
 , Functions =
-    ./functions.dhall sha256:2e3b9907ee9d63bf5e3b76ad6e042c749a924a5e6bd72d7f2570951cb762f1f2
+    ./functions.dhall sha256:e021820dbfda6b95f28395ad9b1aeb59bcbdb54307ffc703606309ecd86ebfda
 , Runtimes =
     ./runtimes.dhall sha256:494714b1bc15b6e7bce5791397c64711506138bd8213c6d94e67058698e944fe
 , Prelude =

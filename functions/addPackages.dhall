@@ -1,4 +1,5 @@
-{- Adds packages to an environment
+{- Adds packages to an environment.
+   This function remove any previous runtime container-file to force re-creation
 -}
 let addPackages
     : forall (packages : List Text) ->
@@ -9,6 +10,8 @@ let addPackages
             env
         //  { packages = Some
                 (../runtimes/getPackages.dhall env.packages # packages)
+            , container-file = None (List ../types/Task)
+            , container-update = None (List ../types/Task)
             }
 
 in  addPackages
