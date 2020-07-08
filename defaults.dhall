@@ -61,7 +61,10 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Git.Review
         , Envs.Emacs.Nox
         , Envs.Emacs.IDE
-        , Envs.Codium
+        , (./runtimes/fedora/create.dhall).Base
+            (./runtimes/fedora/create.dhall).LatestVersion
+            [ Envs.Codium.Repo ]
+            Envs.Codium.Env
         , Envs.Chromium
         , Envs.Firefox.Minimal
         , (./runtimes/fedora/create.dhall).Fusion Envs.Firefox.WithCodecs

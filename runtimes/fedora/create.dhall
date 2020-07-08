@@ -30,12 +30,13 @@ let Base
                   )
             }
 
-let latest = "32"
+let LatestVersion = "32"
 
-in  { Latest = Base latest ([] : List Task)
+in  { Latest = Base LatestVersion ([] : List Task)
     , Rawhide = Base "rawhide"
+    , LatestVersion
     , Base
-    , Fusion = Base latest [ ./fusion.dhall latest ]
+    , Fusion = Base LatestVersion [ ./fusion.dhall LatestVersion ]
     , Devel =
         \(env : Env) ->
           Base
