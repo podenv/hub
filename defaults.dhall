@@ -71,4 +71,6 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Zeal
         ]
     # FedoraFusionEnvs [ Envs.Obs, Envs.Firefox.WithCodecs, Envs.Mplayer ]
-    # [ Envs.Codium.FedoraRuntime Envs.Codium.Env ]
+    # [ Envs.Code.FedoraRuntime Envs.Code.Free
+      , Envs.Code.FedoraRuntime Envs.Code.Non-Free
+      ]

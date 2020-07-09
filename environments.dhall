@@ -2,8 +2,8 @@
     ./environments/centos.dhall sha256:c6a861a341cf7bc2f2e53428630b60b0d659dfe10d252037d9ddad2e461cb5ce
 , Chromium =
     ./environments/chromium.dhall sha256:2eb060c9c41a7fe854f47b804b257b23c6b2c28047e14e57a457ebbf8dcbdebf
-, Codium =
-    ./environments/codium.dhall sha256:909adeb4704b23ba0fad269f2f8ef6bffbd14aae7f157e3398201c800598f193
+, Code =
+    ./environments/code.dhall sha256:fbba8ff7df8592d70dfa94a50c87d585e74281d6797528928abfe3e47ce246f3
 , Dhall =
     ./environments/dhall.dhall sha256:4e9d70642bfb4c2c66aaab5be740c9e43982fe18a74f4a5234fd65f443c9af72
 , Emacs =
