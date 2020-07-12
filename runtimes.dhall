@@ -1,13 +1,13 @@
 { Centos =
-    ./runtimes/centos/package.dhall sha256:4675e64e9bd4741be767a8f6cff0455a01084651b49c53dd44dc291c037e6042
+    ./runtimes/centos/package.dhall sha256:52ded338e510c99d4550107eb8bea27146883bb306ab45ed3f5db1a1c26ebaec
 , Debian =
-    ./runtimes/debian/package.dhall sha256:7e51efc8326768b8edcfaf664fb70844f4369d9cf83c90ad04f685d92918f0a7
+    ./runtimes/debian/package.dhall sha256:d7257aee0c6ab66251be097751cf44d87beff1f1e93efc578dab37ac0ef0aef9
 , Fedora =
-    ./runtimes/fedora/package.dhall sha256:2d4913e2b218495d8262c10e65eb51cf3b2bd4b55a3f1ce55fbe783b1715d6ab
+    ./runtimes/fedora/package.dhall sha256:f99714ef5fb41a311dff46935dffb50207e45d6f1369c794e36549717f869b8c
 , Nixos =
-    ./runtimes/nixos/package.dhall sha256:c298128644ad7fef0ae75df1c6d71868bbbc3d7da4a827ca067d3ee7da1a709b
+    ./runtimes/nixos/package.dhall sha256:083e0e5c18d5cd83cb50afc60055cdf831df87de09e521e538b1f25648b69393
 , Node =
-    ./runtimes/node/package.dhall sha256:868aee653a291707f174c3cddbde609f375ee4d9b71fa2f6e0ebc056c47baa7b
+    ./runtimes/node/package.dhall sha256:b7cc6af03d659f8b5b2a947e83c5dbe20ffe0a1842044e9cd8890ad37e58a29a
 , Python =
-    ./runtimes/python/package.dhall sha256:5b72f0b10a9ae7691bbe6028d58e4624543149fc7ea983bb846d2211e1400df0
+    ./runtimes/python/package.dhall sha256:7eacb99735831ae66e973f1f8fbbb4e0152fc0059108b7c533e89b27bf2d90f5
 }
