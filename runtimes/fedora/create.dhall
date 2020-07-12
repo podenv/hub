@@ -36,7 +36,9 @@ in  { Latest = Base LatestVersion ([] : List Task)
     , Rawhide = Base "rawhide"
     , LatestVersion
     , Base
-    , Fusion = Base LatestVersion [ ./fusion.dhall LatestVersion ]
+    , Fusion = Base LatestVersion [ ./fusion-free.dhall LatestVersion ]
+    , FusionNonFree =
+        Base LatestVersion [ ./fusion-nonfree.dhall LatestVersion ]
     , Devel =
         \(env : Env) ->
           Base

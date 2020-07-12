@@ -54,6 +54,8 @@
     ./environments/shell.dhall sha256:71076f3727b4b53ad43ac554f86467817228e3313c4a55f399b1041c630243e6
 , Ssh =
     ./environments/ssh.dhall sha256:199a720b89ce247d04ef2e8d5b5e1124343c424e6ed310c76bfea3f990c0d15a
+, Steam =
+    ./environments/steam.dhall sha256:0b6f73c780d78b5457c11842838a06a5f35af968649f1a72996fe034378659b0
 , Streamtuner =
     ./environments/streamtuner.dhall sha256:b6cc2046fc91a72c39eba2827c2d3504edee80d3e4418c115e9fad949b6537ce
 , Tor =

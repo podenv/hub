@@ -73,4 +73,5 @@ in    [ Envs.Emacs.DhallEditor
     # FedoraFusionEnvs [ Envs.Obs, Envs.Firefox.WithCodecs, Envs.Mplayer ]
     # [ Envs.Code.FedoraRuntime Envs.Code.Free
       , Envs.Code.FedoraRuntime Envs.Code.Non-Free
+      , (./runtimes/fedora/create.dhall).FusionNonFree Envs.Steam
       ]

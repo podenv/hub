@@ -3,7 +3,7 @@
 , Debian =
     ./runtimes/debian/package.dhall sha256:d7257aee0c6ab66251be097751cf44d87beff1f1e93efc578dab37ac0ef0aef9
 , Fedora =
-    ./runtimes/fedora/package.dhall sha256:f99714ef5fb41a311dff46935dffb50207e45d6f1369c794e36549717f869b8c
+    ./runtimes/fedora/package.dhall sha256:4fffde55142fe98c0abaac2c6d012e22efedaf402c3fe7b30c8d08b6cecd022e
 , Nixos =
     ./runtimes/nixos/package.dhall sha256:083e0e5c18d5cd83cb50afc60055cdf831df87de09e521e538b1f25648b69393
 , Node =
