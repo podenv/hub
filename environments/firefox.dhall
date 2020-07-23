@@ -19,6 +19,7 @@ let Extended =
         , "libva-intel-hybrid-driver"
         , "libcanberra-gtk3"
         , "pulseaudio-libs"
+        , "ffmpeg"
         ]
         (../functions/capMedia.dhall Minimal)
 
