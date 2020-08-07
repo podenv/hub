@@ -1,6 +1,99 @@
 {- Some shell instruction to setup dhall-haskell in container -}
 
+let Containerfile =
+      https://raw.githubusercontent.com/softwarefactory-project/dhall-containerfile/8efa0a7fc3a447b92ded0276f483ba05148807c4/package.dhall sha256:6275d68a6600ea2c2cfde46e87db86b7e563f2402a7268378cff1c5db96a49cb
+
 let Text/concatSep = (../Prelude.dhall).Text.concatSep
+
+let Package =
+      { Type =
+          { url : Text
+          , version : Text
+          , name : Text
+          , env : Text
+          , package : Text
+          }
+      }
+
+let sfPackage =
+      \(name : Text) ->
+      \(upper-name : Text) ->
+        { url = "https://github.com/softwarefactory-project/dhall-${name}"
+        , version = "master"
+        , name
+        , env = "DHALL_${upper-name}"
+        , package = "package.dhall"
+        }
+
+let Packages =
+      { Prelude =
+          \(version : Text) ->
+            { url = "https://github.com/dhall-lang/dhall-lang"
+            , version
+            , name = "dhall-lang"
+            , env = "DHALL_PRELUDE"
+            , package = "Prelude/package.dhall"
+            }
+      , Kubernetes =
+          \(version : Text) ->
+            { url = "https://github.com/dhall-lang/dhall-kubernetes"
+            , version
+            , name = "dhall-kubernetes"
+            , env = "DHALL_KUBERNETES"
+            , package = "package.dhall"
+            }
+      , Podenv =
+        { url = "https://github.com/podenv/hub"
+        , version = "master"
+        , name = "hub"
+        , env = "DHALL_PODENV"
+        , package = "package.dhall"
+        }
+      , Prometheus =
+        { url = "https://github.com/TristanCacqueray/dhall-prometheus"
+        , version = "master"
+        , name = "dhall-prometheus"
+        , env = "DHALL_PROMETHEUS"
+        , package = "package.dhall"
+        }
+      , Ansible = sfPackage "ansible" "ANSIBLE"
+      , Containerfile = sfPackage "containerfile" "CONTAINERFILE"
+      , Zuul = sfPackage "zuul" "ZUUL"
+      , Nodepool = sfPackage "nodepool" "NODEPOOL"
+      , SoftwareFactory = sfPackage "software-factory" "SOFTWARE_FACTORY"
+      }
+
+let PackagesStatements =
+      let mkStatements =
+            \(pkg : Package.Type) ->
+              let pkg-path = "/usr/share/${pkg.name}"
+
+              in  { install =
+                        Containerfile.run
+                          "Cache ${pkg.name}"
+                          [ "git clone --branch ${pkg.version} --depth 1 ${pkg.url} ${pkg-path}"
+                          , "mkdir -p /root/.cache"
+                          , "dhall hash <<< ${pkg-path}/${pkg.package}"
+                          ]
+                      # Containerfile.env
+                          [ { mapKey = pkg.env
+                            , mapValue = "/usr/share/${pkg.name}/${pkg.package}"
+                            }
+                          ]
+                  }
+
+      in  { Prelude =
+              \(version : Text) -> mkStatements (Packages.Prelude version)
+          , Kubernetes =
+              \(version : Text) -> mkStatements (Packages.Kubernetes version)
+          , Podenv = mkStatements Packages.Podenv
+          , Prometheus = mkStatements Packages.Prometheus
+          , Ansible = mkStatements Packages.Ansible
+          , Containerfile = mkStatements Packages.Containerfile
+          , Zuul = mkStatements Packages.Zuul
+          , Nodepool = mkStatements Packages.Nodepool
+          , SoftwareFactory = mkStatements Packages.SoftwareFactory
+          }
 
 let Commands =
       let DhallInstallCommand =
@@ -61,6 +154,27 @@ let Commands =
                   "1.33.1"
                   "6e1073e4fb22e9f0663d71f977c4cd13d3635997988289f2c7604a0def84f609"
             }
+          , `1.34` =
+            { json =
+                DhallInstallCommand
+                  "json-"
+                  "1.34.1"
+                  "1.7.1"
+                  "37a7df3c0f1073cf58c0b28c13454f113a5a9af63913b9faf2a8928aa9d88293"
+            , yaml =
+                DhallInstallCommand
+                  "yaml-"
+                  "1.34.0"
+                  "1.2.1"
+                  "ecbc24e1e42c55a1681e5e7a1d69aa20603662bda4aee50dc019324a0866ba25"
+            , docs = DhallInstallCommand "docs-" "1.34.0" "1.0.0" ""
+            , base =
+                DhallInstallCommand
+                  ""
+                  "1.34.0"
+                  "1.34.0"
+                  "962c53b7b9f55f5155aa1f309b26e065a51b027bb7bfb16965439dbdde94c458"
+            }
           , cache =
               let DhallCacheCommand =
                     \(repo : Text) ->
@@ -115,4 +229,4 @@ let Commands =
                   }
           }
 
-in  { Commands }
+in  { Commands, Packages, PackagesStatements }

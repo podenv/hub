@@ -11,7 +11,7 @@
     : List
         ./types/Env sha256:15158bc7fa55c3d293875215bafb7d496e93453c1bd1cf945fe06dbb597e0876
 , Environments =
-    ./environments.dhall sha256:3b3e9877222be9873233a19e0c22195cfffedbc2aafc6a3a191ecf870b7d56dc
+    ./environments.dhall sha256:0b6e766b18ceb4ddae86e750de1d70198c19323039a4f5890f4efec758a9891c
 , Functions =
     ./functions.dhall sha256:693ac71377a8c6be904a81c52c23da04faf113a6408020653db8b500866e73fa
 , Runtimes =
