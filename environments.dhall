@@ -6,6 +6,8 @@
     ./environments/code.dhall sha256:b2e5868302068d2d2a866b91fcbeb0038e4e9cc9ab79f531c863895e78f38240
 , Dhall =
     ./environments/dhall.dhall sha256:7d27f566e4b5ab7e80ae2347563362f87f0445f7dad707975f849528620b6cd1
+, Electrum =
+    ./environments/electrum.dhall sha256:4974c3f3a81d28200a566e828e72fed79fcdbb987988f3b5f798c8804a15a7c5
 , Emacs =
     ./environments/emacs.dhall sha256:92939719b05c377f3c7982a787d4a192917b9f84f0e22173cfc547792a5a085e
 , Fedora =

@@ -47,6 +47,7 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Pavucontrol
         , Envs.Xeyes
         , Envs.Mupdf
+        , Envs.Electrum
         , Envs.Feh
         , Envs.Hugo
         , Envs.Inkscape
