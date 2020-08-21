@@ -44,6 +44,8 @@
     ./environments/obs.dhall sha256:f04956141001c2c93b0112cbdb28b4cec0036f71f0162c3b7ac6fe555c0a118b
 , Openvpn =
     ./environments/openvpn.dhall sha256:9674f9e11b6b80fc627edf27cc6ed609a3fc09e1284617b9a993f93689cadf6e
+, Pass =
+    ./environments/pass.dhall sha256:471c316aaf14a4882220848fb103e0ce1868697fab75f4345007c8b5faa56ea1
 , Pavucontrol =
     ./environments/pavucontrol.dhall sha256:056032921ca5d228f396902ef56330e5af8edaff41cd58cbca0c78eafd9ed739
 , PythonHttpServer =
