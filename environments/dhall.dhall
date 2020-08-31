@@ -1,7 +1,9 @@
 {- Some shell instruction to setup dhall-haskell in container -}
 
 let Containerfile =
-      https://raw.githubusercontent.com/softwarefactory-project/dhall-containerfile/8efa0a7fc3a447b92ded0276f483ba05148807c4/package.dhall sha256:6275d68a6600ea2c2cfde46e87db86b7e563f2402a7268378cff1c5db96a49cb
+        env:DHALL_CONTAINERFILE sha256:9ee58096e7ab5b30041c2a2ff0cc187af5bff6b4d7a6be8a6d4f74ed23fe7cdf
+      ? ~/src/softwarefactory-project.io/software-factory/dhall-containerfile/package.dhall sha256:9ee58096e7ab5b30041c2a2ff0cc187af5bff6b4d7a6be8a6d4f74ed23fe7cdf
+      ? https://raw.githubusercontent.com/softwarefactory-project/dhall-containerfile/0.1.0/package.dhall sha256:9ee58096e7ab5b30041c2a2ff0cc187af5bff6b4d7a6be8a6d4f74ed23fe7cdf
 
 let Text/concatSep = (../Prelude.dhall).Text.concatSep
 
