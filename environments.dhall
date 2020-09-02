@@ -5,7 +5,7 @@
 , Code =
     ./environments/code.dhall sha256:b2e5868302068d2d2a866b91fcbeb0038e4e9cc9ab79f531c863895e78f38240
 , Dhall =
-    ./environments/dhall.dhall sha256:7d27f566e4b5ab7e80ae2347563362f87f0445f7dad707975f849528620b6cd1
+    ./environments/dhall.dhall sha256:0845346af0f71b187aebb31b923c2c158cf1215f7a5a19c269cc906c332d8799
 , Electrum =
     ./environments/electrum.dhall sha256:4974c3f3a81d28200a566e828e72fed79fcdbb987988f3b5f798c8804a15a7c5
 , Emacs =
@@ -46,6 +46,8 @@
     ./environments/obs.dhall sha256:f04956141001c2c93b0112cbdb28b4cec0036f71f0162c3b7ac6fe555c0a118b
 , Openvpn =
     ./environments/openvpn.dhall sha256:9674f9e11b6b80fc627edf27cc6ed609a3fc09e1284617b9a993f93689cadf6e
+, Pass =
+    ./environments/pass.dhall sha256:471c316aaf14a4882220848fb103e0ce1868697fab75f4345007c8b5faa56ea1
 , Pavucontrol =
     ./environments/pavucontrol.dhall sha256:056032921ca5d228f396902ef56330e5af8edaff41cd58cbca0c78eafd9ed739
 , PythonHttpServer =
