@@ -61,6 +61,26 @@ let Vpn =
               ]
             }
 
+let Socks =
+      \(name : Text) ->
+      \(local-port : Natural) ->
+      \(remote-user : Text) ->
+      \(remote-host : Text) ->
+            Client
+        //  { description = Some "SOCKS ssh tunel with ${remote-host}"
+            , name
+            , network = Some remote-host
+            , packages = Some
+                (../runtimes/getPackages.dhall Client.packages # [ "iproute" ])
+            , command = Some
+              [ "ssh"
+              , "-D"
+              , "${Natural/show local-port}"
+              , "-qN"
+              , "${remote-user}@${remote-host}"
+              ]
+            }
+
 let VpnTemplates = { Slot1 = Vpn "172.30.1.1" "172.30.1.2" 1 }
 
 in  { Vpn =
@@ -69,5 +89,6 @@ in  { Vpn =
       , CentOS = VpnTemplates.Slot1 "centos"
       , Fedora = VpnTemplates.Slot1 "fedora"
       }
+    , Socks.Create = Socks
     , Client
     }
