@@ -3,6 +3,7 @@ let capabilities =
       , x11 = Some True
       , foreground = Some True
       , large-shm = Some True
+      , dri = Some True
       }
 
 let free-repo =
@@ -40,7 +41,17 @@ let non-free-repo =
         }
       }
 
-let common-pkgs = [ "libX11-xcb", "which", "gdouros-symbola-fonts" ]
+let common-pkgs =
+      [ "libX11-xcb"
+      , "which"
+      , "gdouros-symbola-fonts"
+      , "mesa-vulkan-drivers"
+      , "mesa-libgbm"
+      , "mesa-dri-drivers"
+      , "mesa-libEGL"
+      , "glxinfo"
+      , "iproute"
+      ]
 
 let Infos =
       { Free =

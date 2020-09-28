@@ -3,7 +3,7 @@
 , Chromium =
     ./environments/chromium.dhall sha256:afb1ea831f66b72a9685c5a703bf113eefa96834d9323e179d82f37ba8b8033a
 , Code =
-    ./environments/code.dhall sha256:b2e5868302068d2d2a866b91fcbeb0038e4e9cc9ab79f531c863895e78f38240
+    ./environments/code.dhall sha256:573bacba1804adacdf49645e7d382990ec73b7a50f3b483641637da902d95e1e
 , Dhall =
     ./environments/dhall.dhall sha256:0845346af0f71b187aebb31b923c2c158cf1215f7a5a19c269cc906c332d8799
 , Electrum =
