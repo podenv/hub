@@ -28,6 +28,8 @@
     ./environments/inkscape.dhall sha256:d13c426793e3baabfbe71f60dfc17ae60034769a77af9f6102aecdf26a88cdff
 , Kigo =
     ./environments/kigo.dhall sha256:696389b05af246d7cc64cab2c16d4922a51d19d803d8e70817889aef5b2c5bb7
+, Librecad =
+    ./environments/librecad.dhall sha256:db0e571d9bf3c7ca7f99729d3e55a49edcb78fda4f32fc6f67ba1ffb4893bb8e
 , Libreoffice =
     ./environments/libreoffice.dhall sha256:5b4a393fb8eb07903050c5d4a4ec228a6bce78f9846f8a1485cc5005795714c8
 , Linphone =
