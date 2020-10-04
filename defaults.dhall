@@ -53,6 +53,7 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Inkscape
         , Envs.Kigo
         , Envs.Libreoffice
+        , Envs.Librecad
         , Envs.Linphone
         , Envs.Mumble
         , Envs.Openvpn
