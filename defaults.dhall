@@ -72,6 +72,7 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.YoutubeDl
         , Envs.Zeal
         , Envs.Pass
+        , Envs.VirtViewer
         ]
     # FedoraFusionEnvs [ Envs.Obs, Envs.Firefox.WithCodecs, Envs.Mplayer ]
     # [ Envs.Code.FedoraRuntime Envs.Code.Free

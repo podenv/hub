@@ -66,6 +66,8 @@
     ./environments/streamtuner.dhall sha256:b6cc2046fc91a72c39eba2827c2d3504edee80d3e4418c115e9fad949b6537ce
 , Tor =
     ./environments/tor.dhall sha256:0ebcc83a623047176d700bc28096ef1f98c8a1de92df22d46f0baa50c3a5bd3f
+, VirtViewer =
+    ./environments/virt-viewer.dhall sha256:8e952ceebbde0efc966154c6b73b087cb58bcc3795f1a57e3523ec3370e3307b
 , Xeyes =
     ./environments/xeyes.dhall sha256:cd3f7bb02e3356df264ae298c7a8331dc3d9bb885ac570234c72f3cefc9b291e
 , YoutubeDl =
