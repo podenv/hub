@@ -58,6 +58,8 @@
     ./environments/reno.dhall sha256:cb5a186ef27b536aaa5d6747a7aa3590ca7d42b77566876955e54e5612e9a3f0
 , Shell =
     ./environments/shell.dhall sha256:71076f3727b4b53ad43ac554f86467817228e3313c4a55f399b1041c630243e6
+, SpiceGtk =
+    ./environments/spice-gtk.dhall sha256:6af3ca81b4cc0699bf3fb736f45e04b79cecb0bed940bdbb4878681bc0a60e4b
 , Ssh =
     ./environments/ssh.dhall sha256:6d17142b0e949b64cd1356f0ab9c61382040b75c6d097a2325e2ed9913845bec
 , Steam =

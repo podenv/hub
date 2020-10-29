@@ -69,6 +69,7 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Chromium
         , Envs.Firefox.Minimal
         , Envs.Streamtuner
+        , Envs.SpiceGtk
         , Envs.YoutubeDl
         , Envs.Zeal
         , Envs.Pass
