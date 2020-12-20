@@ -1,4 +1,4 @@
-let version = "31"
+let version = (./create.dhall).LatestVersion
 
 in  (../../schemas/Env)::{
     , name = "fedora"
