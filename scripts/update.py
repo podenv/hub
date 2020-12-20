@@ -35,7 +35,7 @@ dhall_format = inout(["format"])
 dhall_freeze = inout(["freeze", "--all"])
 
 def write(dest, kv):
-    content = dhall_freeze(dhall_format(create_package(create_records(sorted(kv)))))
+    content = dhall_format(create_package(create_records(sorted(kv))))
     if not dest.exists() or dest.read_text() != content:
         dest.write_text(content)
         print("%s: updated!" % dest)
