@@ -32,6 +32,7 @@
 , Steam = ./environments/steam.dhall
 , Streamtuner = ./environments/streamtuner.dhall
 , Tor = ./environments/tor.dhall
+, VirtViewer = ./environments/virt-viewer.dhall
 , Xeyes = ./environments/xeyes.dhall
 , YoutubeDl = ./environments/youtube-dl.dhall
 , Zeal = ./environments/zeal.dhall

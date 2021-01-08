@@ -70,6 +70,7 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Firefox.Minimal
         , Envs.Streamtuner
         , Envs.YoutubeDl
+        , Envs.VirtViewer
         , Envs.Zeal
         , Envs.Pass
         ]
