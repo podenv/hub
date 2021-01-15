@@ -1,4 +1,5 @@
-{ Centos = ./environments/centos.dhall
+{ Audacity = ./environments/audacity.dhall
+, Centos = ./environments/centos.dhall
 , Chromium = ./environments/chromium.dhall
 , Code = ./environments/code.dhall
 , Dhall = ./environments/dhall.dhall
