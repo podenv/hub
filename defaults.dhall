@@ -44,6 +44,7 @@ in    [ Envs.Emacs.DhallEditor
     # DebianEnvs [ Envs.Gworldclock ]
     # FedoraEnvs
         [ Envs.Shell
+        , Envs.Audacity
         , Envs.Pavucontrol
         , Envs.Xeyes
         , Envs.Mupdf
