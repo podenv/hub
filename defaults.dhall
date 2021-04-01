@@ -79,4 +79,5 @@ in    [ Envs.Emacs.DhallEditor
     # [ Envs.Code.FedoraRuntime Envs.Code.Free
       , Envs.Code.FedoraRuntime Envs.Code.Non-Free
       , (./runtimes/fedora/create.dhall).FusionNonFree Envs.Steam
+      , Envs.Vcv
       ]
