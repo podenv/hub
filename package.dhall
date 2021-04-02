@@ -6,10 +6,7 @@
    * 'Runtimes' are functions to define environment runtime.
    * 'Prelude' is a copy of the dhall-lang library 'Prelude'.
 -}
-{ Defaults =
-      ./defaults.dhall
-    : List
-        ./types/Env sha256:15158bc7fa55c3d293875215bafb7d496e93453c1bd1cf945fe06dbb597e0876
+{ Defaults = ./defaults.dhall : List ./types/Env
 , Environments = ./environments.dhall
 , Functions = ./functions.dhall
 , Runtimes = ./runtimes.dhall
