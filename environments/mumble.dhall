@@ -6,6 +6,7 @@
           , network = Some True
           , pulseaudio = Some True
           , x11 = Some True
+          , dbus = Some True
           }
         }
   )
