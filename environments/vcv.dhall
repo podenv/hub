@@ -12,7 +12,18 @@ let env =
         (../schemas/Env)::{
         , name = "vcv"
         , description = Some "The EuroRack simulator"
-        , packages = Some [ "Rack-v1", "mesa-dri-drivers" ]
+        , command = Some [ "Rack" ]
+        , packages = Some
+          [ "Rack-v1"
+          , "mesa-dri-drivers"
+          , "rack-v1-Bogaudio"
+          , "rack-v1-AudibleInstruments"
+          , "rack-v1-Valley"
+          , "rack-v1-Befaco"
+          , "rack-v1-Bidoo"
+          , "rack-v1-VCV-Recorder"
+          , "rack-v1-DrumKit"
+          ]
         }
 
 in  (../runtimes/fedora/create.dhall).Base
