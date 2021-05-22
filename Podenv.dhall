@@ -6,6 +6,5 @@
    evaluated from the command line.
 -}
   env:PODENV_PRELUDE
-? ~/git/github.com/podenv/podenv/podenv/dhall/package.dhall
-? ~/.local/lib/python3.7/site-packages/podenv/dhall/package.dhall
+? ~/src/github.com/podenv/podenv/podenv/dhall/package.dhall
 ? https://raw.githubusercontent.com/podenv/podenv/master/podenv/dhall/package.dhall

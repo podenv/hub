@@ -96,13 +96,13 @@ let {- A simple standalone environment to edit dhall file
 let ConfigEditor =
           ../functions/addEnviron.dhall
             ( toMap
-                { PODENV_HUB = "~/git/github.com/podenv/hub/package.dhall"
+                { PODENV_HUB = "~/src/github.com/podenv/hub/package.dhall"
                 , PODENV_PRELUDE =
-                    "~/git/github.com/podenv/podenv/podenv/dhall/package.dhall"
+                    "~/src/github.com/podenv/podenv/podenv/dhall/package.dhall"
                 }
             )
             ( ../functions/addMountMap.dhall
-                "~/git/github.com/podenv"
+                "~/src/github.com/podenv"
                 (../functions/addMountMap.dhall "~/.config/podenv" DhallEditor)
             )
       //  { command = Some
