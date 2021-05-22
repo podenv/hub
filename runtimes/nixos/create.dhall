@@ -54,6 +54,10 @@ let Nix =
             }
 
 in  { Nix
+    , Latest =
+        Nix
+          "2.3.11"
+          "899d2aa3fe6e74d5ad38bd7d0c51dee0d85ecebf41447298b50ce30640018d2e"
     , Default =
         Nix
           "2.3"
