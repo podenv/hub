@@ -11,7 +11,14 @@ let Nix =
                         "~/.cache/podenv/dnf-latest"
                     ]
               }
-            , mounts = Some ./mounts.dhall
+            , mounts = Some
+                (   merge
+                      { None = [] : List ../../types/Mount
+                      , Some = \(mounts : List ../../types/Mount) -> mounts
+                      }
+                      env.mounts
+                  # ./mounts.dhall
+                )
             , user = Some (../defaultUser.dhall env.user)
             , container-file =
                 ../fromText.dhall
