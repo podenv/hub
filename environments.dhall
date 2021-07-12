@@ -33,6 +33,7 @@
 , Ssh = ./environments/ssh.dhall
 , Steam = ./environments/steam.dhall
 , Streamtuner = ./environments/streamtuner.dhall
+, Supercollider = ./environments/supercollider.dhall
 , Tor = ./environments/tor.dhall
 , Vcv = ./environments/vcv.dhall
 , VirtViewer = ./environments/virt-viewer.dhall

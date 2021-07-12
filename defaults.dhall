@@ -69,6 +69,7 @@ in    [ Envs.Emacs.DhallEditor
         , Envs.Emacs.IDE
         , Envs.Chromium
         , Envs.Firefox.Minimal
+        , Envs.Supercollider
         , Envs.Streamtuner
         , Envs.YoutubeDl
         , Envs.VirtViewer
