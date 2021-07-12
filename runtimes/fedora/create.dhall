@@ -30,7 +30,7 @@ let Base
                   )
             }
 
-let LatestVersion = "33"
+let LatestVersion = "34"
 
 in  { Latest = Base LatestVersion ([] : List Task)
     , Rawhide = Base "rawhide"
