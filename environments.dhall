@@ -26,6 +26,7 @@
 , Openvpn = ./environments/openvpn.dhall
 , Pass = ./environments/pass.dhall
 , Pavucontrol = ./environments/pavucontrol.dhall
+, Pwsafe = ./environments/pwsafe.dhall
 , PythonHttpServer = ./environments/python-http-server.dhall
 , Reno = ./environments/reno.dhall
 , Shell = ./environments/shell.dhall
