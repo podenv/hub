@@ -20,6 +20,7 @@
 , mupdf = ./mupdf.dhall
 , network = ./network.dhall
 , nix = ./nix.dhall
+, nixify = ./nixify.dhall
 , obs = ./obs.dhall
 , openvpn = ./openvpn.dhall
 , polyglot = ./polyglot.dhall
