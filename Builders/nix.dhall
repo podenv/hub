@@ -33,6 +33,7 @@ in  Podenv.Application::{
               ]
 
         in  [ "bash", "-c", Prelude.Text.concatSep " " args ]
+    , volumes = [ "nix-store:/nix", "nix-profiles:/profile" ]
     , runtime =
         let uid = "\${USER_UID}"
 
