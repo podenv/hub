@@ -1,2 +1,0 @@
-{- Convenient accessor to Podenv.Types.Task -}
-let Podenv = ../Podenv.dhall in Podenv.Types.Task

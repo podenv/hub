@@ -18,14 +18,11 @@ import subprocess
 import os
 from pathlib import Path
 
+def create_records(fn):
+    return list(map(lambda f: (Path(f).name.replace('.dhall', ''), f), fn))
+
 def create_package(kv):
     return "{" + " , ".join(map(lambda i: " = ".join(i), kv))+ "}"
-
-def capitalize(n):
-    return ''.join(map(str.capitalize, n.split('-')))
-
-def create_records(fn):
-    return list(map(lambda f: (capitalize(Path(f.split('/')[2]).name.replace('.dhall', '')), f), fn))
 
 def inout(command):
     return lambda stdin: subprocess.Popen(["dhall", "--ascii"] + command, stdin=subprocess.PIPE, stdout=subprocess.PIPE).communicate(
@@ -41,12 +38,10 @@ def write(dest, kv):
         print("%s: updated!" % dest)
 
 def listdir(dname):
-    return list(map(lambda s: "./" + str(dname / s), filter(lambda s: s.endswith(".dhall"), os.listdir(dname))))
+    return list(map(lambda s: "./" + str(s),
+                    filter(lambda s: s.endswith(".dhall") and
+                           not s.startswith("_") and
+                           s != "package.dhall",
+                           os.listdir(dname))))
 
-write(Path("environments.dhall"), listdir(Path("./environments/")))
-
-def listruntime(dname):
-    return list(map(lambda s: "./runtimes/" + s + "/package.dhall",
-                    filter(lambda s: (Path("runtimes") / s).is_dir(), os.listdir(dname))))
-
-write(Path("runtimes.dhall"), listruntime("./runtimes"))
+write(Path("Applications/package.dhall"), listdir(Path("./Applications/")))

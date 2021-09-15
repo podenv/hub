@@ -1,2 +1,0 @@
-{- Convenient accessor to Podenv.Schemas.Capabilities -}
-let Podenv = ../Podenv.dhall in Podenv.Schemas.Capabilities
