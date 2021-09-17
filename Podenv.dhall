@@ -7,4 +7,4 @@
 -}
   env:PODENV
 ? ~/src/github.com/podenv/podenv/package.dhall
-? https://raw.githubusercontent.com/podenv/podenv/master/package.dhall
+? https://raw.githubusercontent.com/podenv/podenv/main/package.dhall
