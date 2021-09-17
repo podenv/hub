@@ -24,5 +24,6 @@
    * https://github.com/dhall-lang/dhall-nethack/blob/master/Prelude.dhall
 -}
   env:DHALL_PRELUDE
-? https://prelude.dhall-lang.org/v17.0.0/package.dhall sha256:10db3c919c25e9046833df897a8ffe2701dc390fa0893d958c3430524be5a43e
-? https://prelude.dhall-lang.org/v17.0.0/package.dhall
+? { Text.concatSep =
+      https://prelude.dhall-lang.org/v17.0.0/Text/concatSep sha256:e4401d69918c61b92a4c0288f7d60a6560ca99726138ed8ebc58dca2cd205e58
+  }
