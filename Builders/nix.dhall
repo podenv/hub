@@ -14,6 +14,14 @@ in  Podenv.Application::{
         let hash =
               "aae346f0ee447efa042c38e320aee0368e3c6c7fa331d76f708bbe8539f694fa"
 
+        let -- The image is meant to be used by user or root seamlessly.
+            -- however `nix-env` setups ~/.nix-defexpr/channels using root channels
+            share-profile =
+              [ "rm -Rf /nix/var/nix/profiles/per-user/{root,fedora}"
+              , "ln -s user /nix/var/nix/profiles/per-user/root"
+              , "ln -s user /nix/var/nix/profiles/per-user/fedora"
+              ]
+
         let args =
               [ "test -d /nix/var || ("
               , Prelude.Text.concatSep
@@ -29,7 +37,9 @@ in  Podenv.Application::{
                   , "/nix/var/nix/profiles/default/bin/nix-store --optimise"
                   , "/nix/var/nix/profiles/default/bin/nix-store --verify --check-contents"
                   ]
-              , "); nix --version"
+              , "); "
+              , Prelude.Text.concatSep " && " share-profile
+              , "; nix --version"
               ]
 
         in  [ "bash", "-c", Prelude.Text.concatSep " " args ]
@@ -41,7 +51,8 @@ in  Podenv.Application::{
               [ "dnf update -y"
               , "dnf install -y xz ncurses-compat-libs"
               , ./mkUser.dhall "user"
-              , "mkdir -m 0755 -p /etc/nix && echo 'sandbox = false' > /etc/nix/nix.conf"
+              , "mkdir -m 0755 -p /etc/nix && echo -e 'sandbox = false\\nbuild-users-group =' > /etc/nix/nix.conf"
+              , "ln -sf /nix/var/nix/profiles/default/etc/profile.d/nix.sh /etc/profile.d/nix.sh"
               , "dnf clean all"
               ]
 
@@ -56,7 +67,6 @@ in  Podenv.Application::{
                   FROM registry.access.redhat.com/ubi8:latest
                   ARG USER_UID
                   RUN ${Prelude.Text.concatSep " && " cmds}
-                  RUN ln -sf /nix/var/nix/profiles/default/etc/profile.d/nix.sh /etc/profile.d/ && mkdir -m 0755 -p /etc/nix && echo -e 'sandbox = false\nbuild-users-group =' > /etc/nix/nix.conf
                   ENV USER=user
                   ENV HOME=${home}
                   ENV PATH=/nix/var/nix/profiles/default/bin:/bin:/sbin
