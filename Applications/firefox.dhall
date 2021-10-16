@@ -12,15 +12,14 @@ let default =
           minimal
       //  { runtime =
               (./fedora.dhall).fusion.use
-                [ "firefox"
-                , "gdouros-symbola-fonts"
-                , "mesa-dri-drivers"
-                , "libva-intel-driver"
-                , "libva-intel-hybrid-driver"
-                , "pipewire-pulseaudio"
-                , "ffmpeg"
-                , "mozilla-ublock-origin"
-                ]
+                (   [ "firefox"
+                    , "gdouros-symbola-fonts"
+                    , "pipewire-pulseaudio"
+                    , "ffmpeg"
+                    , "mozilla-ublock-origin"
+                    ]
+                  # ./_graphicDrivers.dhall
+                )
           , capabilities =
               minimal.capabilities // { dri = True, pulseaudio = True }
           }
