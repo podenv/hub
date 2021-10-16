@@ -1,4 +1,5 @@
 { audacity = ./audacity.dhall
+, brave = ./brave.dhall
 , centos = ./centos.dhall
 , chromium = ./chromium.dhall
 , debian = ./debian.dhall
