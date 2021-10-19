@@ -18,6 +18,7 @@ in  Podenv.Application::{
             -- however `nix-env` setups ~/.nix-defexpr/channels using root channels
             share-profile =
               [ "rm -Rf /nix/var/nix/profiles/per-user/{root,fedora}"
+              , "mkdir -p /nix/var/nix/profiles/per-user/user"
               , "ln -s user /nix/var/nix/profiles/per-user/root"
               , "ln -s user /nix/var/nix/profiles/per-user/fedora"
               ]
