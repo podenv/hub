@@ -14,15 +14,6 @@ in  Podenv.Application::{
         let hash =
               "aae346f0ee447efa042c38e320aee0368e3c6c7fa331d76f708bbe8539f694fa"
 
-        let -- The image is meant to be used by user or root seamlessly.
-            -- however `nix-env` setups ~/.nix-defexpr/channels using root channels
-            share-profile =
-              [ "rm -Rf /nix/var/nix/profiles/per-user/{root,fedora}"
-              , "mkdir -p /nix/var/nix/profiles/per-user/user"
-              , "ln -s user /nix/var/nix/profiles/per-user/root"
-              , "ln -s user /nix/var/nix/profiles/per-user/fedora"
-              ]
-
         let args =
               [ "test -d /nix/var || ("
               , Prelude.Text.concatSep
@@ -33,14 +24,12 @@ in  Podenv.Application::{
                   , "tar xf nix-${version}-x86_64-linux.tar.xz"
                   , "/tmp/nix-${version}-x86_64-linux/install"
                   , "rm -r /tmp/nix-*-x86_64-linux*"
-                  , "ln -s /nix/var/nix/profiles/per-user/user/profile /nix/var/nix/profiles/default"
+                  , "ln -s /nix/var/nix/profiles/per-user/root/profile /nix/var/nix/profiles/default"
                   , "/nix/var/nix/profiles/default/bin/nix-collect-garbage --delete-old"
                   , "/nix/var/nix/profiles/default/bin/nix-store --optimise"
                   , "/nix/var/nix/profiles/default/bin/nix-store --verify --check-contents"
                   ]
-              , "); "
-              , Prelude.Text.concatSep " && " share-profile
-              , "; nix --version"
+              , "); ln -sf root /nix/var/nix/profiles/per-user/user; nix --version"
               ]
 
         in  [ "bash", "-c", Prelude.Text.concatSep " " args ]
