@@ -8,6 +8,18 @@ let mkUse =
       \(packages : List Text) ->
         Podenv.Container (fedora.image version pre-task packages)
 
+let mkUsePost =
+      \(version : Text) ->
+      \(pre-task : Text) ->
+      \(packages : List Text) ->
+      \(post-task : Text) ->
+        let image = fedora.image version pre-task packages
+
+        in  Podenv.Container
+              ( image
+                with containerfile = image.containerfile ++ post-task ++ "\n"
+              )
+
 let -- | When the application name is the package and command name
     useSimple =
       \(name : Text) ->
@@ -35,8 +47,32 @@ let -- | Create a default app and use function
     useD =
       \(version : Text) -> { default = default version, use = mkUse version "" }
 
+let review =
+      Podenv.Application::{
+      , description = Some "Review tool for fedora rpm packages"
+      , runtime =
+          mkUsePost
+            "latest"
+            ""
+            [ "fedora-review" ]
+            ''
+            # Ensure mock group is set
+            RUN usermod -G mock root && echo 'config_opts["use_nspawn"] = False' >> /etc/mock/site-defaults.cfg
+            ''
+      , syscaps = [ "SYS_ADMIN" ]
+      , capabilities = Podenv.Capabilities::{
+        , keep = True
+        , network = True
+        , interactive = True
+        , terminal = True
+        , root = True
+        }
+      , volumes = [ "fedora-review:~" ]
+      }
+
 in  { default = default "latest"
     , latest.use = mkUse "latest" ""
+    , review
     , useSimple
     , useImage = fedora.image
     , `34` = useD "34"
