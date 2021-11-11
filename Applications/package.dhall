@@ -8,6 +8,7 @@
 , fedora = ./fedora.dhall
 , feh = ./feh.dhall
 , firefox = ./firefox.dhall
+, flutter = ./flutter.dhall
 , gimp = ./gimp.dhall
 , google-chrome = ./google-chrome.dhall
 , gworldclock = ./gworldclock.dhall
