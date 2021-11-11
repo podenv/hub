@@ -1,4 +1,5 @@
 { audacity = ./audacity.dhall
+, blender = ./blender.dhall
 , brave = ./brave.dhall
 , centos = ./centos.dhall
 , chromium = ./chromium.dhall
