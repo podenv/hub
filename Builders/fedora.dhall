@@ -2,18 +2,19 @@ let Prelude = ../Prelude.dhall
 
 let Podenv = ../Podenv.dhall
 
-let image-ref = \(ver : Text) -> "registry.fedoraproject.org/fedora:${ver}"
+let image-ref = \(ver : Text) -> "registry.fedoraproject.org/fedora${ver}"
 
 let mkVolumes = \(ver : Text) -> [ "cache-dnf-${ver}:/var/cache/dnf" ]
 
-let image =
+let base-image =
+      \(from : Text) ->
       \(ver : Text) ->
       \(pre-task : Text) ->
       \(pkgs : List Text) ->
         Podenv.ContainerBuild::{
         , containerfile =
             ''
-            FROM ${image-ref ver}
+            FROM ${from}
             ARG USER_UID
             RUN ${./mkUser.dhall "fedora"}
             ${pre-task}
@@ -25,4 +26,6 @@ let image =
         , image_update = Some "dnf update -y"
         }
 
-in  { image-ref, mkVolumes, image }
+let image = \(ver : Text) -> base-image (image-ref (":" ++ ver)) ver
+
+in  { image-ref, mkVolumes, base-image, image }
