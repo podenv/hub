@@ -54,7 +54,10 @@ let -- | Extra layer to install common graphic packages
               , "qt5-qtwayland"
               , "xdg-utils"
               , "glx-utils"
+              , "harfbuzz-icu"
               ]
+            # [ "dejavu-sans-mono-fonts", "dejavu-sans-mono-fonts" ]
+            # [ "xdg-dbus-proxy", "xdg-desktop-portal-gtk" ]
             # [ "which"
               , "findutils"
               , "strace"
