@@ -3,8 +3,7 @@ let Podenv = ../Podenv.dhall
 in  Podenv.Application::{
     , description = Some "Open Broadcaster Software"
     , runtime =
-        (./fedora.dhall).fusion.use
-          ([ "obs-studio", "qt5-qtwayland" ] # ./_graphicDrivers.dhall)
+        (./fedora.dhall).latest.useGraphic [ "obs-studio", "qt5-qtwayland" ]
     , command = [ "obs" ]
     , capabilities = Podenv.Capabilities::{
       , wayland = True
