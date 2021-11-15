@@ -8,6 +8,15 @@ let mkUse =
       \(packages : List Text) ->
         Podenv.Container (fedora.image version pre-task packages)
 
+let addRepo =
+      \(repo : { name : Text, conf : Text, key : Text }) ->
+        let file = "[${repo.name}]" ++ "\n" ++ repo.conf
+
+        in  ''
+            RUN rpm --import ${repo.key}
+            RUN echo -e ${Text/show file} > /etc/yum.repos.d/${repo.name}.repo
+            ''
+
 let -- | When the application name is the package and command name
     useSimple =
       \(name : Text) ->
@@ -37,6 +46,7 @@ let -- | Create a default app and use function
 
 in  { default = default "latest"
     , latest.use = mkUse "latest" ""
+    , addRepo
     , useSimple
     , useImage = fedora.image
     , `34` = useD "34"
