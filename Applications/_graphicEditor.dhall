@@ -6,7 +6,7 @@
       , name
       , description = Some desc
       , command = [ name ]
-      , runtime = (./fedora.dhall).latest.use [ name ]
+      , runtime = (./fedora.dhall).latest.useGraphic [ name ]
       , capabilities = Podenv.Capabilities::{
         , hostfile = True
         , wayland = True

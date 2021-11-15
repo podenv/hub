@@ -19,7 +19,7 @@ let container =
 
       in  \(packages : List Text) ->
             Podenv.Container
-              ((./fedora.dhall).useGraphicImage "latest" extra packages)
+              ((./fedora.dhall).useGraphicCodecImage "latest" extra packages)
 
 let default =
       Podenv.Application::{

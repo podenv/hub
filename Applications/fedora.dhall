@@ -11,13 +11,14 @@ let mkUse =
         Podenv.Container (fedora.image version pre-task packages)
 
 let -- | When the application name is the package and command name
-    useSimple =
+    mkUseSimple =
+      \(extra : Text) ->
       \(name : Text) ->
       \(desc : Text) ->
         Podenv.Application::{
         , name
         , description = Some desc
-        , runtime = mkUse "latest" "" [ name ]
+        , runtime = mkUse "latest" extra [ name ]
         , command = [ name ]
         }
 
@@ -42,63 +43,108 @@ let fusion-repo =
       \(ver : Text) ->
         "https://download1.rpmfusion.org/${variant}/fedora/rpmfusion-${variant}-release-${ver}.noarch.rpm"
 
-let -- | A more beefy image with common graphic runtime pre-installed
-    -- See: https://fedoraproject.org/wiki/Firefox_Hardware_acceleration
-    useGraphicImage =
-      \(ver : Text) ->
-      \(extra : Text) ->
-        let -- | A list of packages that are often required but missing from the requirements
-            gfx-pkgs =
+let -- | Extra layer to install common graphic packages
+    extraGraphic =
+      let extra-pkgs =
               [ "mesa-dri-drivers"
               , "mesa-vulkan-drivers"
               , "libglvnd-glx"
               , "glxinfo"
               , "gtk4"
-              , "ffmpeg"
-              , "libva"
-              , "libva-utils"
-              , "libva-intel-driver"
+              , "qt5-qtwayland"
               , "xdg-utils"
-              , "which"
+              , "glx-utils"
+              ]
+            # [ "which"
               , "findutils"
               , "strace"
+              , "procps-ng"
+              , "file"
+              , "xz"
+              , "diffutils"
               ]
+            # [ "pipewire-libs", "pulseaudio-libs", "pipewire-pulseaudio" ]
 
-        let gfx-runtime =
-                  "RUN dnf install -y "
-              ++  fusion-repo "free" "\$(rpm -E %fedora)"
-              ++  " && dnf install -y "
-              ++  Prelude.Text.concatSep " " gfx-pkgs
+      in  ''
+          RUN dnf install -y ${Prelude.Text.concatSep " " extra-pkgs}
+          ''
 
-        in  fedora.image ver (gfx-runtime ++ "\n" ++ extra)
+let -- | Extra layer to install codec
+    -- See: https://fedoraproject.org/wiki/Firefox_Hardware_acceleration
+    extraGraphicCodec =
+      let -- | A list of packages that are often required but missing from the requirements
+          gfx-pkgs =
+            [ "ffmpeg"
+            , "libva"
+            , "libva-utils"
+            , "libva-intel-driver"
+            , "libvdpau-va-gl"
+            ]
 
-in  { default = default "latest"
-    , latest =
-      { use = mkUse "latest" ""
-      , useGraphic =
-          \(pkgs : List Text) ->
-            Podenv.Container (useGraphicImage "latest" "" pkgs)
+      let repo = fusion-repo "free" "\$(rpm -E %fedora)"
+
+      in  ''
+          RUN dnf install -y ${repo} && dnf install -y ${Prelude.Text.concatSep
+                                                           " "
+                                                           gfx-pkgs}
+          ''
+
+let -- | Simpler helper where app == package == command
+    simples =
+      { useSimple = mkUseSimple ""
+      , useGraphicSimple = mkUseSimple extraGraphic
+      , useGraphicCodecSimple = mkUseSimple (extraGraphic ++ extraGraphicCodec)
       }
-    , useSimple
-    , useImage = fedora.image
-    , useGraphicImage
-    , `34` = useD "34"
-    , rawhide = useD "rawhide"
-    , fusion =
-        let ver = "34"
 
-        let mkVariant =
-              \(variant : Text) ->
-                { use =
-                    mkUse ver ("RUN dnf install -y " ++ fusion-repo variant ver)
-                }
+let useWith =
+      \(extra : Text) ->
+      \(version : Text) ->
+      \(pre-task : Text) ->
+      \(packages : List Text) ->
+        fedora.image version (extra ++ pre-task) packages
 
-        in  mkVariant "free" // { nonfree = mkVariant "nonfree" }
-    , useCopr =
-        \(name : Text) ->
-          { use =
-              mkUse
-                "latest"
-                "RUN dnf -y install dnf-plugins-core && dnf -y copr enable ${name}"
-          }
-    }
+let -- | Base image access for extra customization
+    images =
+      { useImage = fedora.image
+      , useGraphicImage = useWith extraGraphic
+      , useGraphicCodecImage = useWith (extraGraphic ++ extraGraphicCodec)
+      }
+
+let base =
+      { default = default "latest"
+      , latest =
+        { use = mkUse "latest" ""
+        , useGraphic = mkUse "latest" extraGraphic
+        , useGraphicCodec = mkUse "latest" (extraGraphic ++ extraGraphicCodec)
+        }
+      , `34` = useD "34"
+      , rawhide = useD "rawhide"
+      , fusion =
+          let ver = "34"
+
+          let mkVariant =
+                \(variant : Text) ->
+                \(extra : Text) ->
+                  { use =
+                      mkUse
+                        ver
+                        (     extra
+                          ++  "RUN dnf install -y "
+                          ++  fusion-repo variant ver
+                        )
+                  }
+
+          in      mkVariant "free" ""
+              //  { nonfree =
+                      mkVariant "nonfree" (extraGraphic ++ extraGraphicCodec)
+                  }
+      , useCopr =
+          \(name : Text) ->
+            { use =
+                mkUse
+                  "latest"
+                  "RUN dnf -y install dnf-plugins-core && dnf -y copr enable ${name}"
+            }
+      }
+
+in  base // simples // images

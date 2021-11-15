@@ -21,21 +21,13 @@ let container =
             ''
 
       in  \(packages : List Text) ->
-            Podenv.Container ((./fedora.dhall).useImage "latest" extra packages)
+            Podenv.Container
+              ((./fedora.dhall).useGraphicCodecImage "latest" extra packages)
 
 let default =
       Podenv.Application::{
       , description = Some "Code editing"
-      , runtime =
-          container
-            [ "code"
-            , "mesa-vulkan-drivers"
-            , "mesa-dri-drivers"
-            , "glxinfo"
-            , "iproute"
-            , "which"
-            , "findutils"
-            ]
+      , runtime = container [ "code", "iproute" ]
       , command = [ "code", "--wait" ]
       , capabilities = Podenv.Capabilities::{ wayland = True, x11 = True }
       }

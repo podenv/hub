@@ -3,7 +3,7 @@ let Podenv = ../Podenv.dhall
 let minimal =
       Podenv.Application::{
       , description = Some "Mozilla Firefox"
-      , runtime = (./fedora.dhall).latest.use [ "firefox" ]
+      , runtime = (./fedora.dhall).latest.useGraphic [ "firefox" ]
       , command = [ "firefox", "--no-remote" ]
       , capabilities = Podenv.Capabilities::{ wayland = True, network = True }
       }
@@ -11,7 +11,7 @@ let minimal =
 let default =
           minimal
       //  { runtime =
-              (./fedora.dhall).latest.useGraphic
+              (./fedora.dhall).latest.useGraphicCodec
                 [ "firefox"
                 , "gdouros-symbola-fonts"
                 , "pipewire-pulseaudio"

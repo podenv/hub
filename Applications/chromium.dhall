@@ -2,7 +2,7 @@ let Podenv = ../Podenv.dhall
 
 in  Podenv.Application::{
     , description = Some "open-source web browser"
-    , runtime = (./fedora.dhall).latest.use [ "chromium", "mesa-dri-drivers" ]
+    , runtime = (./fedora.dhall).latest.useGraphicCodec [ "chromium" ]
     , command = [ "chromium-browser" ]
     , capabilities = Podenv.Capabilities::{
       , network = True
