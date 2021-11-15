@@ -2,23 +2,19 @@
 let Podenv = ../Podenv.dhall
 
 let container =
-      let repo =
-            ''
-            [code]
-            name=Visual Studio Code
-            baseurl=https://packages.microsoft.com/yumrepos/vscode
-            enabled=1
-            gpgcheck=1
-            gpgkey=https://packages.microsoft.com/keys/microsoft.asc
-            ''
-
-      let key = "https://packages.microsoft.com/keys/microsoft.asc"
-
       let extra =
-            ''
-            RUN rpm --import ${key}
-            RUN echo -e ${Text/show repo} > /etc/yum.repos.d/vscode.repo
-            ''
+            (./fedora.dhall).addRepo
+              { name = "vscode"
+              , conf =
+                  ''
+                  name=Visual Studio Code
+                  baseurl=https://packages.microsoft.com/yumrepos/vscode
+                  enabled=1
+                  gpgcheck=1
+                  gpgkey=https://packages.microsoft.com/keys/microsoft.asc
+                  ''
+              , key = "https://packages.microsoft.com/keys/microsoft.asc"
+              }
 
       in  \(packages : List Text) ->
             Podenv.Container ((./fedora.dhall).useImage "latest" extra packages)

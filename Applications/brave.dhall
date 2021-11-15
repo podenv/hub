@@ -1,21 +1,18 @@
 let Podenv = ../Podenv.dhall
 
 let container =
-      let repo =
-            ''
-            [brave-browser]
-            name=created by dnf config-manager from https://brave-browser-rpm-release.s3.brave.com/x86_64/
-            baseurl=https://brave-browser-rpm-release.s3.brave.com/x86_64/
-            enabled=1
-            ''
-
-      let key = "https://brave-browser-rpm-release.s3.brave.com/brave-core.asc"
-
       let extra =
-            ''
-            RUN rpm --import ${key}
-            RUN echo -e ${Text/show repo} > /etc/yum.repos.d/brave-browser.repo
-            ''
+            (./fedora.dhall).addRepo
+              { name = "brave-browser"
+              , conf =
+                  ''
+                  name=created by dnf config-manager from https://brave-browser-rpm-release.s3.brave.com/x86_64/
+                  baseurl=https://brave-browser-rpm-release.s3.brave.com/x86_64/
+                  enabled=1
+                  ''
+              , key =
+                  "https://brave-browser-rpm-release.s3.brave.com/brave-core.asc"
+              }
 
       in  \(packages : List Text) ->
             Podenv.Container ((./fedora.dhall).useImage "latest" extra packages)
