@@ -18,18 +18,13 @@ let container =
             ''
 
       in  \(packages : List Text) ->
-            Podenv.Container ((./fedora.dhall).useImage "latest" extra packages)
+            Podenv.Container
+              ((./fedora.dhall).useGraphicImage "latest" extra packages)
 
 let default =
       Podenv.Application::{
       , description = Some "Brave Browser"
-      , runtime =
-          container
-            [ "brave-browser"
-            , "mesa-vulkan-drivers"
-            , "mesa-dri-drivers"
-            , "libglvnd-glx"
-            ]
+      , runtime = container [ "brave-browser" ]
       , command = [ "brave-browser" ]
       , capabilities = Podenv.Capabilities::{
         , dbus = True
