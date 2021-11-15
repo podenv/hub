@@ -6,7 +6,7 @@ let packages =
 
 in  Podenv.Application::{
     , description = Some "Cross-platform web browser developed by Google"
-    , runtime = (./fedora.dhall).latest.use packages
+    , runtime = (./fedora.dhall).latest.useGraphicCodec packages
     , command = [ "google-chrome" ]
     , capabilities = Podenv.Capabilities::{
       , network = True

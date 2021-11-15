@@ -1,4 +1,4 @@
-    (./fedora.dhall).useSimple
+    (./fedora.dhall).useGraphicSimple
       "zeal"
       "Offline documentation browser inspired by Dash"
 //  { volumes = [ "cache-zeal:~" ]

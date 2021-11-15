@@ -2,14 +2,7 @@ let Podenv = ../Podenv.dhall
 
 in  Podenv.Application::{
     , description = Some "Media player software"
-    , runtime =
-        (./fedora.dhall).fusion.use
-          [ "mplayer"
-          , "libvdpau-va-gl"
-          , "mesa-dri-drivers"
-          , "libva-intel-driver"
-          , "libva-intel-hybrid-driver"
-          ]
+    , runtime = (./fedora.dhall).latest.useGraphicCodec [ "mplayer" ]
     , command = [ "mplayer" ]
     , capabilities = Podenv.Capabilities::{
       , dri = True
