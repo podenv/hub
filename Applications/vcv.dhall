@@ -1,11 +1,18 @@
 let Podenv = ../Podenv.dhall
 
-let builder = (./fedora.dhall).useCopr "ycollet/linuxmao"
+let builder =
+      \(packages : List Text) ->
+        Podenv.Container
+          ( (./fedora.dhall).useGraphicImage
+              "latest"
+              ((./fedora.dhall).addCopr "ycollet/linuxmao")
+              packages
+          )
 
 let minimal =
       Podenv.Application::{
       , description = Some "The EuroRack simulator"
-      , runtime = builder.use [ "Rack-v1", "mesa-dri-drivers" ]
+      , runtime = builder [ "Rack-v1", "mesa-dri-drivers" ]
       , command = [ "Rack" ]
       , capabilities = Podenv.Capabilities::{
         , alsa = True
@@ -19,7 +26,7 @@ let minimal =
 let default =
           minimal
       //  { runtime =
-              builder.use
+              builder
                 [ "Rack-v1"
                 , "mesa-dri-drivers"
                 , "rack-v1-Bogaudio"

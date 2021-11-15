@@ -103,8 +103,7 @@ let useWith =
       \(extra : Text) ->
       \(version : Text) ->
       \(pre-task : Text) ->
-      \(packages : List Text) ->
-        fedora.image version (extra ++ pre-task) packages
+        fedora.image version (extra ++ pre-task)
 
 let -- | Base image access for extra customization
     images =
@@ -141,13 +140,9 @@ let base =
               //  { nonfree =
                       mkVariant "nonfree" (extraGraphic ++ extraGraphicCodec)
                   }
-      , useCopr =
+      , addCopr =
           \(name : Text) ->
-            { use =
-                mkUse
-                  "latest"
-                  "RUN dnf -y install dnf-plugins-core && dnf -y copr enable ${name}"
-            }
+            "RUN dnf -y install dnf-plugins-core && dnf -y copr enable ${name}"
       }
 
 in  base // simples // images
