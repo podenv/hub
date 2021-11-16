@@ -10,18 +10,6 @@ let mkUse =
       \(packages : List Text) ->
         Podenv.Container (fedora.image version pre-task packages)
 
-let -- | When the application name is the package and command name
-    mkUseSimple =
-      \(extra : Text) ->
-      \(name : Text) ->
-      \(desc : Text) ->
-        Podenv.Application::{
-        , name
-        , description = Some desc
-        , runtime = mkUse "latest" extra [ name ]
-        , command = [ name ]
-        }
-
 let default =
       \(version : Text) ->
         Podenv.Application::{
@@ -94,23 +82,37 @@ let -- | Extra layer to install codec
 
 let -- | Simpler helper where app == package == command
     simples =
-      { useSimple = mkUseSimple ""
-      , useGraphicSimple = mkUseSimple extraGraphic
-      , useGraphicCodecSimple = mkUseSimple (extraGraphic ++ extraGraphicCodec)
-      }
+      let -- | When the application name is the package and command name
+          mkUseSimple =
+            \(extra : Text) ->
+            \(name : Text) ->
+            \(desc : Text) ->
+              Podenv.Application::{
+              , name
+              , description = Some desc
+              , runtime = mkUse "latest" extra [ name ]
+              , command = [ name ]
+              }
 
-let useWith =
-      \(extra : Text) ->
-      \(version : Text) ->
-      \(pre-task : Text) ->
-        fedora.image version (extra ++ pre-task)
+      in  { useSimple = mkUseSimple ""
+          , useGraphicSimple = mkUseSimple extraGraphic
+          , useGraphicCodecSimple =
+              mkUseSimple (extraGraphic ++ extraGraphicCodec)
+          }
 
 let -- | Base image access for extra customization
     images =
-      { useImage = fedora.image
-      , useGraphicImage = useWith extraGraphic
-      , useGraphicCodecImage = useWith (extraGraphic ++ extraGraphicCodec)
-      }
+      let mkUseImage =
+            \(extra : Text) ->
+            \(version : Text) ->
+            \(pre-task : Text) ->
+              fedora.image version (extra ++ pre-task)
+
+      in  { useImage = mkUseImage ""
+          , useGraphicImage = mkUseImage extraGraphic
+          , useGraphicCodecImage =
+              mkUseImage (extraGraphic ++ extraGraphicCodec)
+          }
 
 let base =
       { default = default "latest"
