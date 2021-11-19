@@ -13,6 +13,9 @@
       -- | Run as root
       root : Bool
     , --
+      -- | Run as user
+      userid : Bool
+    , --
       -- Host service
       --
       wayland : Bool
@@ -48,6 +51,7 @@
   , interactive = False
   , keep = False
   , root = False
+  , userid = False
   , wayland = False
   , pipewire = False
   , dbus = False
