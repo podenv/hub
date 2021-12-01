@@ -142,7 +142,7 @@ let base =
               //  { nonfree =
                       mkVariant "nonfree" (extraGraphic ++ extraGraphicCodec)
                   }
-      , addCopr =
+      , useCopr =
           \(name : Text) ->
             "RUN dnf -y install dnf-plugins-core && dnf -y copr enable ${name}"
       }

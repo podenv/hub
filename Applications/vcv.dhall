@@ -5,7 +5,7 @@ let builder =
         Podenv.Container
           ( (./fedora.dhall).useGraphicImage
               "latest"
-              ((./fedora.dhall).addCopr "ycollet/linuxmao")
+              ((./fedora.dhall).useCopr "ycollet/linuxmao")
               packages
           )
 
