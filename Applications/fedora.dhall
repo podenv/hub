@@ -13,7 +13,7 @@ let mkUse =
 let default =
       \(version : Text) ->
         Podenv.Application::{
-        , runtime = Podenv.Image (fedora.image-ref version)
+        , runtime = Podenv.Image (fedora.image-ref (":" ++ version))
         , volumes = fedora.mkVolumes version
         , capabilities = Podenv.Capabilities::{
           , terminal = True
