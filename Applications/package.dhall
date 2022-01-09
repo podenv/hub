@@ -6,6 +6,7 @@
 , chromium = ./chromium.dhall
 , debian = ./debian.dhall
 , electrum = ./electrum.dhall
+, fbrnch = ./fbrnch.dhall
 , fedora = ./fedora.dhall
 , feh = ./feh.dhall
 , firefox = ./firefox.dhall
