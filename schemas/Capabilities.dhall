@@ -5,13 +5,15 @@
       terminal : Bool
     , -- | Attach stdin
       interactive : Bool
-    , -- | Keep the container after it stops.
+    , -- | Keep the container after it stops. TODO: deprecate, this no longer works with bwrap
       keep : Bool
     , --
       -- Process perms
       --
       -- | Run as root
       root : Bool
+    , -- | Mount the rootfs as read write
+      rw : Bool
     , --
       -- Host service
       --
@@ -37,7 +39,7 @@
       --
       -- | Mount the current working directory
       cwd : Bool
-    , -- | Mount a repository root and set the cwd
+    , -- | Mount the current project root directory
       gitroot : Bool
     , -- | Mount host paths given on the cli
       hostfile : Bool
@@ -48,6 +50,7 @@
   , interactive = False
   , keep = False
   , root = False
+  , rw = False
   , wayland = False
   , pipewire = False
   , dbus = False
