@@ -18,6 +18,7 @@ let default =
           , terminal = True
           , interactive = True
           , network = True
+          , rw = True
           }
         }
 
