@@ -33,7 +33,6 @@
 , nixify = ./nixify.dhall
 , obs = ./obs.dhall
 , openvpn = ./openvpn.dhall
-, polyglot = ./polyglot.dhall
 , pwsafe = ./pwsafe.dhall
 , qjackctl = ./qjackctl.dhall
 , qtractor = ./qtractor.dhall

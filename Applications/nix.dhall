@@ -2,29 +2,70 @@ let Podenv = ../Podenv.dhall
 
 let setup = ../Builders/nix.dhall
 
-let use =
-      \(expr : Text) ->
-        Podenv.Nix "let pkgs = (import <nixpkgs> {}); in ${expr}"
+let -- | A pinned reference for the nixpkgs
+    nixpkgs =
+      "github:NixOS/nixpkgs/7954a245e70238e08078baef7ff6459a67e229c3"
+
+let -- | Setup a Nix runtime with custom installables and nixpkgs packages.
+    uses =
+      \(qualifiedInstallables : List Text) ->
+      \(pkgs : List Text) ->
+        Podenv.Nix
+          Podenv.Flakes::{
+          , nixpkgs = Some nixpkgs
+          , installables =
+                qualifiedInstallables
+              # (../Prelude.dhall).List.map
+                  Text
+                  Text
+                  (\(pkgs : Text) -> "${nixpkgs}#${pkgs}")
+                  pkgs
+          }
+
+let usesExample =
+        assert
+      :     uses [ "flakes/url" ] [ "bash" ]
+        ===  Podenv.Nix
+               Podenv.Flakes::{
+               , nixpkgs = Some nixpkgs
+               , installables = [ "flakes/url", "${nixpkgs}#bash" ]
+               }
+
+let -- | Setup a Nix runtime with nixpkgs packages
+    use =
+      uses ([] : List Text)
+
+let useExample =
+        assert
+      :     use [ "bash" ]
+        ===  Podenv.Nix
+               Podenv.Flakes::{
+               , nixpkgs = Some nixpkgs
+               , installables = [ "${nixpkgs}#bash" ]
+               }
 
 let default =
       Podenv.Application::{
+      , description = Some "A shell with nix"
       , capabilities = Podenv.Capabilities::{
         , terminal = True
         , interactive = True
         , network = True
         }
-      , runtime = use "pkgs.nix"
-      , environ = [ "PS1=nix\$ " ]
+      , runtime = use [ "nix" ]
+      , command = [ "sh" ]
       }
 
-let unstable = default // { runtime = use "pkgs.nixUnstable" }
-
 let shell =
-      \(expr : Text) ->
-            unstable
-        //  { description = Some
-                "Start a nix-shell, use --cwd to mount the current working directory"
-            , command = [ "nix-shell", "-p", expr ]
-            }
+      \(pkg : Text) ->
+        Podenv.Application::{
+        , description = Some "A shell with a nix package"
+        , capabilities = Podenv.Capabilities::{
+          , terminal = True
+          , interactive = True
+          }
+        , runtime = use [ pkg ]
+        , command = [ "sh" ]
+        }
 
-in  { setup, use, default, unstable, shell }
+in  { setup, use, uses, default, shell }

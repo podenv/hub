@@ -6,13 +6,13 @@ let Podenv = ../Podenv.dhall
 let home = "/home/user"
 
 in  Podenv.Application::{
-    , description = Some "Setup a nix store in a podman volume"
+    , description = Some "Setup the nix store"
     , capabilities = Podenv.Capabilities::{ network = True }
     , command =
-        let version = "2.3.15"
+        let version = "2.8.0"
 
         let hash =
-              "aae346f0ee447efa042c38e320aee0368e3c6c7fa331d76f708bbe8539f694fa"
+              "0b32afd8c9147532bf8ce8908395b1b4d6dde9bedb0fcf5ace8b9fe0bd4c075c"
 
         let args =
               [ "test -d /nix/var || ("
@@ -24,45 +24,15 @@ in  Podenv.Application::{
                   , "tar xf nix-${version}-x86_64-linux.tar.xz"
                   , "/tmp/nix-${version}-x86_64-linux/install"
                   , "rm -r /tmp/nix-*-x86_64-linux*"
-                  , "ln -s /nix/var/nix/profiles/per-user/root/profile /nix/var/nix/profiles/default"
+                  , "cp -P /nix/var/nix/profiles/per-user/\$(id -nu)/profile-1-link /nix/var/nix/profiles/nix-install"
                   , "/nix/var/nix/profiles/default/bin/nix-collect-garbage --delete-old"
                   , "/nix/var/nix/profiles/default/bin/nix-store --optimise"
                   , "/nix/var/nix/profiles/default/bin/nix-store --verify --check-contents"
                   ]
-              , "); ln -sf root /nix/var/nix/profiles/per-user/user; nix --version"
+              , "); /nix/var/nix/profiles/nix-install/bin/nix --version"
               ]
 
         in  [ "bash", "-c", Prelude.Text.concatSep " " args ]
-    , volumes = [ "nix-store:/nix" ]
-    , runtime =
-        let uid = "\${USER_UID}"
-
-        let cmds =
-              [ "dnf update -y"
-              , "dnf install -y xz ncurses-compat-libs"
-              , ./mkUser.dhall "user"
-              , "mkdir -m 0755 -p /etc/nix && echo -e 'sandbox = false\\nbuild-users-group =' > /etc/nix/nix.conf"
-              , "ln -sf /nix/var/nix/profiles/default/etc/profile.d/nix.sh /etc/profile.d/nix.sh"
-              , "dnf clean all"
-              ]
-
-        in  Podenv.Container
-              Podenv.ContainerBuild::{
-              , image_name = Some "local-nix"
-              , image_volumes = [ "nix-store:/nix" ]
-              , image_home = Some home
-              , containerfile =
-                  ''
-                  # Adapted from https://github.com/NixOS/docker/blob/master/Dockerfile
-                  FROM registry.access.redhat.com/ubi8:latest
-                  ARG USER_UID
-                  RUN ${Prelude.Text.concatSep " && " cmds}
-                  ENV USER=user
-                  ENV HOME=${home}
-                  ENV PATH=/nix/var/nix/profiles/default/bin:/bin:/sbin
-                  ENV GIT_SSL_CAINFO=/etc/pki/tls/certs/ca-bundle.crt
-                  ENV NIX_SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt
-                  ENV NIX_PATH=/nix/var/nix/profiles/per-user/user/channels
-                  ''
-              }
+    , volumes = [ "nix-store:/nix", "nix-setup-home:~/" ]
+    , runtime = Podenv.Rootfs "/"
     }
