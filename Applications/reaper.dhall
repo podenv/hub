@@ -1,6 +1,6 @@
 (../Podenv.dhall).Application::{
 , description = Some "Complete digital audio production application"
-, runtime = (../Podenv.dhall).Nix ./reaper.nix as Text
+, runtime = (./nix.dhall).use [ "reaper", "libjack2", "pipewire" ]
 , command = [ "pw-jack", "reaper" ]
 , capabilities = (../Podenv.dhall).Capabilities::{
   , dri = True

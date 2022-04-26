@@ -4,7 +4,7 @@
 -- Container: a static container build
 -- Rootfs: a local directory
 < Image : Text
-| Nix : Text
+| Nix : (./Flakes.dhall).Type
 | Container : (./ContainerBuild.dhall).Type
 | Rootfs : Text
 >
