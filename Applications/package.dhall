@@ -50,6 +50,7 @@
 , virt-viewer = ./virt-viewer.dhall
 , vlc = ./vlc.dhall
 , vmpk = ./vmpk.dhall
+, vnc-viewer = ./vnc-viewer.dhall
 , vscode = ./vscode.dhall
 , xeyes = ./xeyes.dhall
 , youtube-dl = ./youtube-dl.dhall
