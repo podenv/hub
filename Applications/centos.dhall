@@ -8,7 +8,6 @@ let default =
       , description = Some "CentOS 7 shell"
       , runtime = Podenv.Image (image-ref "7")
       , volumes = [ "cache-yum-c7:/var/cache/yum" ]
-      , home = Some "/root"
       }
 
 in  { default }

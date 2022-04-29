@@ -2,7 +2,6 @@
 , Capabilities = ./Capabilities.dhall
 , ContainerBuild = ./ContainerBuild.dhall
 , System = ./System.dhall
-, Tcp = (./Provider.dhall).Tcp
 , Image = (./Runtime.dhall).Image
 , Nix = (./Runtime.dhall).Nix
 , Flakes = ./Flakes.dhall

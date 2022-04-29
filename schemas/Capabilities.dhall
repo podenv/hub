@@ -5,8 +5,6 @@
       terminal : Bool
     , -- | Attach stdin
       interactive : Bool
-    , -- | Keep the container after it stops. TODO: deprecate, this no longer works with bwrap
-      keep : Bool
     , --
       -- Process perms
       --
@@ -14,6 +12,8 @@
       root : Bool
     , -- | Mount the rootfs as read write
       rw : Bool
+    , -- | Run with extra privileges
+      privileged : Bool
     , --
       -- Host service
       --
@@ -24,7 +24,6 @@
     , x11 : Bool
     , ssh : Bool
     , gpg : Bool
-    , kerberos : Bool
     , --
       -- Host devices
       --
@@ -39,8 +38,6 @@
       --
       -- | Mount the current working directory
       cwd : Bool
-    , -- | Mount the current project root directory
-      gitroot : Bool
     , -- | Mount host paths given on the cli
       hostfile : Bool
     }
@@ -48,8 +45,8 @@
   default =
   { terminal = False
   , interactive = False
-  , keep = False
   , root = False
+  , privileged = False
   , rw = False
   , wayland = False
   , pipewire = False
@@ -58,7 +55,6 @@
   , x11 = False
   , ssh = False
   , gpg = False
-  , kerberos = False
   , video = False
   , dri = False
   , kvm = False
@@ -66,7 +62,6 @@
   , network = False
   , tun = False
   , cwd = False
-  , gitroot = False
   , hostfile = False
   }
 }
