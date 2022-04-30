@@ -9,5 +9,6 @@ in  Podenv.Application::{
       , x11 = True
       , pulseaudio = True
       , network = True
+      , privileged = True
       }
     }

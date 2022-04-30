@@ -50,26 +50,14 @@ let useExample =
 
 let default =
       Podenv.Application::{
-      , description = Some "A shell with nix"
+      , description = Some "Run the nix command"
       , capabilities = Podenv.Capabilities::{
         , terminal = True
         , interactive = True
         , network = True
         }
       , runtime = use [ "nix" ]
-      , command = [ "sh" ]
+      , command = [ "nix" ]
       }
 
-let shell =
-      \(pkg : Text) ->
-        Podenv.Application::{
-        , description = Some "A shell with a nix package"
-        , capabilities = Podenv.Capabilities::{
-          , terminal = True
-          , interactive = True
-          }
-        , runtime = use [ pkg ]
-        , command = [ "sh" ]
-        }
-
-in  { setup, use, uses, useInstallables, default, shell }
+in  { setup, use, uses, useInstallables, default }
