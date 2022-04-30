@@ -11,7 +11,12 @@ let -- | Add nix to the application environment
                 # [ "NIX_SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt"
                   , "PATH=/nix/var/nix/profiles/nix-install/bin:/bin:/sbin"
                   ]
-            , volumes = app.volumes # [ "nix-store:/nix", "nix-setup-home:~/" ]
+            , volumes =
+                  app.volumes
+                # [ "nix-store:/nix"
+                  , "nix-cache:~/.cache/nix"
+                  , "nix-setup-home:~/"
+                  ]
             }
 
 in  nixify
