@@ -7,12 +7,11 @@ let -- | Add nix to the application environment
       \(app : Podenv.Application.Type) ->
             app
         //  { environ =
-                  [ "NIX_PATH=/nix/var/nix/profiles/per-user/user/channels"
-                  , "NIX_SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt"
-                  , "PATH=/profile/nix.unstable/bin:/profile/nix/bin:/bin"
+                  app.environ
+                # [ "NIX_SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt"
+                  , "PATH=/nix/var/nix/profiles/nix-install/bin:/bin:/sbin"
                   ]
-                # app.environ
-            , volumes = setup.volumes # app.volumes
+            , volumes = app.volumes # [ "nix-store:/nix", "nix-setup-home:~/" ]
             }
 
 in  nixify
