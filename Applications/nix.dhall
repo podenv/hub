@@ -35,6 +35,10 @@ let -- | Setup a Nix runtime with nixpkgs packages
     use =
       uses ([] : List Text)
 
+let -- | Setup a Nix runtime
+    useInstallables =
+      \(installables : List Text) -> Podenv.Nix Podenv.Flakes::{ installables }
+
 let useExample =
         assert
       :     use [ "bash" ]
@@ -68,4 +72,4 @@ let shell =
         , command = [ "sh" ]
         }
 
-in  { setup, use, uses, default, shell }
+in  { setup, use, uses, useInstallables, default, shell }
