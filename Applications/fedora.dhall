@@ -20,6 +20,7 @@ let default =
           , interactive = True
           , network = True
           , rw = True
+          , root = True
           }
         }
 
