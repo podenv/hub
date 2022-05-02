@@ -14,6 +14,13 @@ in  Podenv.Application::{
         let hash =
               "0b32afd8c9147532bf8ce8908395b1b4d6dde9bedb0fcf5ace8b9fe0bd4c075c"
 
+        let default-config =
+              ''
+              sandbox = false
+              build-users-group =
+              experimental-features = nix-command flakes
+              ''
+
         let args =
               [ "test -d /nix/var || ("
               , Prelude.Text.concatSep
@@ -29,10 +36,13 @@ in  Podenv.Application::{
                   , "/nix/var/nix/profiles/default/bin/nix-store --optimise"
                   , "/nix/var/nix/profiles/default/bin/nix-store --verify --check-contents"
                   ]
+              , "); test -f ~/.config/nix/nix.conf || ("
+              , "echo -en ${Text/show default-config} > ~/.config/nix/nix.conf"
               , "); /nix/var/nix/profiles/nix-install/bin/nix --version"
               ]
 
         in  [ "bash", "-c", Prelude.Text.concatSep " " args ]
-    , volumes = [ "nix-store:/nix", "nix-setup-home:~/" ]
+    , volumes =
+      [ "nix-store:/nix", "nix-config:~/.config/nix", "nix-setup-home:~/" ]
     , runtime = Podenv.Rootfs "/"
     }

@@ -12,7 +12,11 @@ let -- | Add nix to the application environment
                   , "PATH=/nix/var/nix/profiles/nix-install/bin:/bin:/sbin"
                   ]
             , volumes =
-                app.volumes # [ "nix-store:/nix", "nix-cache:~/.cache/nix" ]
+                  app.volumes
+                # [ "nix-store:/nix"
+                  , "nix-config:~/.config/nix"
+                  , "nix-cache:~/.cache/nix"
+                  ]
             }
 
 in  nixify
