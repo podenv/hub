@@ -17,6 +17,7 @@ let image =
             RUN ${./mkUser.dhall "debian"}
             RUN apt-get update
             RUN apt-get install -y ${Prelude.Text.concatSep " " pkgs}
+            ENV USER=debian
             ''
         , image_volumes = mkVolumes ver
         , image_home = Some "/home/debian"
