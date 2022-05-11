@@ -20,6 +20,7 @@ let base-image =
             ${pre-task}
             RUN dnf update -y
             RUN dnf install -y ${Prelude.Text.concatSep " " pkgs}
+            ENV USER=fedora
             ''
         , image_volumes = mkVolumes ver
         , image_home = Some "/home/fedora"
