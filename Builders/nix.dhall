@@ -32,9 +32,9 @@ in  Podenv.Application::{
                   , "/tmp/nix-${version}-x86_64-linux/install"
                   , "rm -r /tmp/nix-*-x86_64-linux*"
                   , "cp -P /nix/var/nix/profiles/per-user/\$(id -nu)/profile-1-link /nix/var/nix/profiles/nix-install"
-                  , "/nix/var/nix/profiles/default/bin/nix-collect-garbage --delete-old"
-                  , "/nix/var/nix/profiles/default/bin/nix-store --optimise"
-                  , "/nix/var/nix/profiles/default/bin/nix-store --verify --check-contents"
+                  , "/nix/var/nix/profiles/nix-install/bin/nix-collect-garbage --delete-old"
+                  , "/nix/var/nix/profiles/nix-install/bin/nix-store --optimise"
+                  , "/nix/var/nix/profiles/nix-install/bin/nix-store --verify --check-contents"
                   ]
               , "); test -f ~/.config/nix/nix.conf || ("
               , "echo -en ${Text/show default-config} > ~/.config/nix/nix.conf"
