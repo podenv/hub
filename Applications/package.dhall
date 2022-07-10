@@ -1,5 +1,6 @@
 { audacity = ./audacity.dhall
 , ardour = ./ardour.dhall
+, chroot = ./chroot.dhall
 , blender = ./blender.dhall
 , brave = ./brave.dhall
 , centos = ./centos.dhall
