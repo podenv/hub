@@ -1,7 +1,6 @@
 { Application = ./Application.dhall
 , Capabilities = ./Capabilities.dhall
 , ContainerBuild = ./ContainerBuild.dhall
-, System = ./System.dhall
 , Image = (./Runtime.dhall).Image
 , Nix = (./Runtime.dhall).Nix
 , Flakes = ./Flakes.dhall
