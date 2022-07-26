@@ -90,7 +90,6 @@ let -- | Simpler helper where app == package == command
             \(name : Text) ->
             \(desc : Text) ->
               Podenv.Application::{
-              , name
               , description = Some desc
               , runtime = mkUse "latest" extra [ name ]
               , command = [ name ]
