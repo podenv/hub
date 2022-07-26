@@ -3,7 +3,6 @@
   let Podenv = ../Podenv.dhall
 
   in  Podenv.Application::{
-      , name
       , description = Some desc
       , command = [ name ]
       , runtime = (./fedora.dhall).latest.useGraphic [ name ]

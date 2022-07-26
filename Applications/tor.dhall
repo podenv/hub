@@ -18,7 +18,6 @@ let browser =
         , x11 = True
         , interactive = True
         }
-      , volumes = [ "data-tb:~/" ]
       }
 
 in  { browser }
