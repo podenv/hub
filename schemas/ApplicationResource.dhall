@@ -2,14 +2,16 @@
     { metadata : (./Metadata.dhall).Type
     , kind : Text
     , apiVersion : Text
-    , resources : (./Resources.dhall).Type
+    , network : ./Network.dhall
+    , volumes : List Text
     , application : (./Application.dhall).Type
     }
 , default =
   { metadata = (./Metadata.dhall).default
   , kind = "Application"
   , apiVersion = "podenv/0.2"
-  , resources = (./Resources.dhall).default
+  , network = (./Network.dhall).Private
+  , volumes = [] : List Text
   , application = (./Application.dhall).default
   }
 }
