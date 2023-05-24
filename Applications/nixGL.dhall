@@ -1,4 +1,4 @@
 -- | An Installable nixGL
-let commit = "569f95d9577154b26d5ce774895fee727f070455"
+let commit = "c917918ab9ebeee27b0dd657263d3f57ba6bb8ad"
 
 in  "github:guibou/nixGL/${commit}#nixGLIntel"
