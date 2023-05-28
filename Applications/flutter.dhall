@@ -12,7 +12,7 @@
       , "glib.dev"
       , "mount"
       ]
-, command = [ "nixGLIntel", "bash" ]
+, command = [ "nixGL", "bash" ]
 , capabilities = (../Podenv.dhall).Capabilities::{
   , terminal = True
   , interactive = True

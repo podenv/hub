@@ -3,7 +3,7 @@ let default =
       (../Podenv.dhall).Application::{
       , description = Some "3D creation suite"
       , runtime = (./nix.dhall).uses [ ./nixGL.dhall ] [ "blender" ]
-      , command = [ "nixGLIntel", "blender" ]
+      , command = [ "nixGL", "blender" ]
       , capabilities = (../Podenv.dhall).Capabilities::{
         , dri = True
         , x11 = True
