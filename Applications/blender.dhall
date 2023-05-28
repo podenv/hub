@@ -5,7 +5,7 @@ let default =
       , runtime =
           (./nix.dhall).uses
             [ ./nixGL.dhall ]
-            [ "cudaPackages.cudatoolkit", "blender" ]
+            [ "cudaPackages.cudatoolkit", "gcc10", "blender" ]
       , command = [ "nixGL", "blender" ]
       , capabilities = (../Podenv.dhall).Capabilities::{
         , dri = True
