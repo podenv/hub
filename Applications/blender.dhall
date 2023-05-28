@@ -9,7 +9,7 @@ let default =
       , command = [ "nixGL", "blender" ]
       , capabilities = (../Podenv.dhall).Capabilities::{
         , dri = True
-        , x11 = True
+        , wayland = True
         , pulseaudio = True
         }
       }
